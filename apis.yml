@@ -1,0 +1,144 @@
+aid: edlink
+url: https://raw.githubusercontent.com/api-evangelist/edlink/refs/heads/main/apis.yml
+name: Edlink
+kind: company
+description: Edlink is an education-integration platform offering a unified API for
+  rostering and school data across SIS and LMS systems. The Edlink Graph API exposes
+  normalized districts, schools, classes, sections, courses, people, and enrollments
+  from hundreds of source systems behind a single Bearer-authenticated REST interface,
+  plus SSO, source integrations, and change events.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Education
+- EdTech
+- Rostering
+- SIS
+- LMS
+- Integration
+- Unified API
+created: '2026-06-21'
+modified: '2026-06-21'
+specificationVersion: '0.19'
+apis:
+- aid: edlink:graph-users-classes-enrollments
+  name: Graph API - Users, Classes, Enrollments
+  tags:
+  - Rostering
+  - People
+  - Classes
+  - Enrollments
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://ed.link/docs/api
+  baseURL: https://ed.link/api/v2
+  properties:
+  - url: https://ed.link/docs/api
+    type: Documentation
+  - url: https://ed.link/docs/guides/v2.0/getting-started/graph-user-meta-apis
+    type: APIReference
+  - url: openapi/edlink-openapi.yml
+    type: OpenAPI
+  description: Institution-level access to normalized people, classes, and enrollments
+    via the Graph API using an Integration Access Token, ideal for bulk roster sync
+    across SIS and LMS sources.
+- aid: edlink:graph-schools-districts
+  name: Graph API - Schools, Districts
+  tags:
+  - Schools
+  - Districts
+  - Organizations
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://ed.link/docs/api
+  baseURL: https://ed.link/api/v2
+  properties:
+  - url: https://ed.link/docs/api
+    type: Documentation
+  - url: openapi/edlink-openapi.yml
+    type: OpenAPI
+  description: Organizational hierarchy of districts and schools shared with an
+    integration, including locale, time zone, grade levels, and location metadata.
+- aid: edlink:graph-courses-sections
+  name: Graph API - Courses, Sections
+  tags:
+  - Courses
+  - Sections
+  - Catalog
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://ed.link/docs/api
+  baseURL: https://ed.link/api/v2
+  properties:
+  - url: https://ed.link/docs/api
+    type: Documentation
+  - url: openapi/edlink-openapi.yml
+    type: OpenAPI
+  description: Course catalog and the sections that subdivide classes, with codes,
+    subjects, grade levels, sessions, and class relationships.
+- aid: edlink:sso
+  name: SSO
+  tags:
+  - SSO
+  - OAuth2
+  - OIDC
+  - Authentication
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://ed.link/docs/guides/v2.0/sso/overview
+  baseURL: https://ed.link/api/v2
+  properties:
+  - url: https://ed.link/docs/guides/v2.0/sso/overview
+    type: Documentation
+  - url: openapi/edlink-openapi.yml
+    type: OpenAPI
+  description: Single Sign-On via OAuth 2.0 and OpenID Connect, letting teachers and
+    students authenticate into a learning platform through their source identity
+    provider and returning a User Access Token.
+- aid: edlink:sources-integrations
+  name: Sources, Integrations
+  tags:
+  - Sources
+  - Integrations
+  - Connections
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://ed.link/docs/api
+  baseURL: https://ed.link/api/v2
+  properties:
+  - url: https://ed.link/docs/api
+    type: Documentation
+  - url: openapi/edlink-openapi.yml
+    type: OpenAPI
+  description: Integration and source metadata describing each connected district
+    data source (SIS/LMS), its provider, status, and sharing configuration,
+    accessible via the Graph and Meta APIs.
+- aid: edlink:events-webhooks
+  name: Events, Webhooks
+  tags:
+  - Events
+  - Webhooks
+  - Change Data
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://ed.link/docs/api
+  baseURL: https://ed.link/api/v2
+  properties:
+  - url: https://ed.link/docs/api
+    type: Documentation
+  - url: openapi/edlink-openapi.yml
+    type: OpenAPI
+  description: Change events stream describing creates, updates, and deletes to roster
+    objects so integrations can incrementally sync rather than re-fetching the full
+    graph.
+common:
+- type: GitHubOrganization
+  url: https://github.com/edlink
+- type: LinkedIn
+  url: https://www.linkedin.com/company/edlink-inc
+- type: Website
+  url: https://ed.link/
+- type: Documentation
+  url: https://ed.link/docs
+- type: Plans
+  url: plans/edlink-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/edlink-rate-limits.yml
+- type: FinOps
+  url: finops/edlink-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

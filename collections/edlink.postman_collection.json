@@ -1,0 +1,382 @@
+{
+  "info": {
+    "name": "Edlink API",
+    "description": "Edlink unified education-integration API (Graph API, SSO, sources/integrations, events) served under https://ed.link/api/v2 with Bearer token authentication.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://ed.link/api/v2"
+    },
+    {
+      "key": "bearerToken",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "People",
+      "item": [
+        {
+          "name": "List people",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/graph/people",
+              "host": ["{{baseUrl}}"],
+              "path": ["graph", "people"]
+            },
+            "description": "Returns a paginated list of all people shared with the integration."
+          }
+        },
+        {
+          "name": "Get a person",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/graph/people/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["graph", "people", ":id"],
+              "variable": [{ "key": "id", "value": "" }]
+            },
+            "description": "Returns a single person by Edlink UUID."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Classes",
+      "item": [
+        {
+          "name": "List classes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/graph/classes",
+              "host": ["{{baseUrl}}"],
+              "path": ["graph", "classes"]
+            },
+            "description": "Returns a paginated list of all classes shared with the integration."
+          }
+        },
+        {
+          "name": "Get a class",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/graph/classes/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["graph", "classes", ":id"],
+              "variable": [{ "key": "id", "value": "" }]
+            },
+            "description": "Returns a single class by Edlink UUID."
+          }
+        },
+        {
+          "name": "List enrollments for a class",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/graph/classes/:id/enrollments",
+              "host": ["{{baseUrl}}"],
+              "path": ["graph", "classes", ":id", "enrollments"],
+              "variable": [{ "key": "id", "value": "" }]
+            },
+            "description": "Returns the enrollments within a class."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Enrollments",
+      "item": [
+        {
+          "name": "List enrollments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/graph/enrollments",
+              "host": ["{{baseUrl}}"],
+              "path": ["graph", "enrollments"]
+            },
+            "description": "Returns a paginated list of enrollments."
+          }
+        },
+        {
+          "name": "Get an enrollment",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/graph/enrollments/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["graph", "enrollments", ":id"],
+              "variable": [{ "key": "id", "value": "" }]
+            },
+            "description": "Returns a single enrollment by Edlink UUID."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Schools & Districts",
+      "item": [
+        {
+          "name": "List schools",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/graph/schools",
+              "host": ["{{baseUrl}}"],
+              "path": ["graph", "schools"]
+            },
+            "description": "Returns a paginated list of schools."
+          }
+        },
+        {
+          "name": "Get a school",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/graph/schools/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["graph", "schools", ":id"],
+              "variable": [{ "key": "id", "value": "" }]
+            },
+            "description": "Returns a single school by Edlink UUID."
+          }
+        },
+        {
+          "name": "List districts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/graph/districts",
+              "host": ["{{baseUrl}}"],
+              "path": ["graph", "districts"]
+            },
+            "description": "Returns a paginated list of districts."
+          }
+        },
+        {
+          "name": "Get a district",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/graph/districts/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["graph", "districts", ":id"],
+              "variable": [{ "key": "id", "value": "" }]
+            },
+            "description": "Returns a single district by Edlink UUID."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Courses & Sections",
+      "item": [
+        {
+          "name": "List courses",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/graph/courses",
+              "host": ["{{baseUrl}}"],
+              "path": ["graph", "courses"]
+            },
+            "description": "Returns a paginated list of courses."
+          }
+        },
+        {
+          "name": "Get a course",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/graph/courses/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["graph", "courses", ":id"],
+              "variable": [{ "key": "id", "value": "" }]
+            },
+            "description": "Returns a single course by Edlink UUID."
+          }
+        },
+        {
+          "name": "List sections",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/graph/sections",
+              "host": ["{{baseUrl}}"],
+              "path": ["graph", "sections"]
+            },
+            "description": "Returns a paginated list of sections."
+          }
+        },
+        {
+          "name": "Get a section",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/graph/sections/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["graph", "sections", ":id"],
+              "variable": [{ "key": "id", "value": "" }]
+            },
+            "description": "Returns a single section by Edlink UUID."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Agents",
+      "item": [
+        {
+          "name": "List agents",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/graph/agents",
+              "host": ["{{baseUrl}}"],
+              "path": ["graph", "agents"]
+            },
+            "description": "Returns the source connection agents feeding the integration."
+          }
+        },
+        {
+          "name": "Get an agent",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/graph/agents/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["graph", "agents", ":id"],
+              "variable": [{ "key": "id", "value": "" }]
+            },
+            "description": "Returns a single agent by Edlink UUID."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sources & Integrations",
+      "item": [
+        {
+          "name": "Get integration metadata",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/graph/integrations/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["graph", "integrations", ":id"],
+              "variable": [{ "key": "id", "value": "" }]
+            },
+            "description": "Returns metadata about the integration tied to the current access token."
+          }
+        },
+        {
+          "name": "List integrations (Meta API)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/meta/integrations",
+              "host": ["{{baseUrl}}"],
+              "path": ["meta", "integrations"]
+            },
+            "description": "Service-account access to all integrations across the platform."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Events",
+      "item": [
+        {
+          "name": "List change events",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/graph/events",
+              "host": ["{{baseUrl}}"],
+              "path": ["graph", "events"]
+            },
+            "description": "Returns create, update, and delete events for incremental synchronization."
+          }
+        }
+      ]
+    },
+    {
+      "name": "SSO",
+      "item": [
+        {
+          "name": "Get the authenticated user profile",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/my/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["my", "profile"]
+            },
+            "description": "Returns the profile of the user associated with a User Access Token."
+          }
+        },
+        {
+          "name": "Exchange an authorization code for an access token",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/x-www-form-urlencoded" }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "grant_type", "value": "authorization_code" },
+                { "key": "code", "value": "" },
+                { "key": "client_id", "value": "" },
+                { "key": "client_secret", "value": "" },
+                { "key": "redirect_uri", "value": "" }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/oauth2/token",
+              "host": ["{{baseUrl}}"],
+              "path": ["oauth2", "token"]
+            },
+            "description": "OAuth 2.0 token endpoint used during the SSO login flow."
+          }
+        }
+      ]
+    }
+  ]
+}

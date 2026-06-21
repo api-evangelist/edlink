@@ -1,0 +1,65 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Edlink
+providerId: edlink
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Education
+- EdTech
+- Rostering
+- SIS
+- LMS
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The Edlink API applies per-access-token rate limits to Graph, User, and Meta
+  API requests. Clients paginate large result sets with cursor-based pagination
+  ($first / $after) rather than fetching unbounded data, and are expected to use
+  the change events stream for incremental sync instead of repeatedly re-reading
+  the full graph. Specific numeric request-per-second or request-per-minute
+  ceilings are not publicly itemized and are not reconciled in this artifact.
+notes: >-
+  Verify concrete per-token request limits, burst allowances, and any 429
+  Retry-After behavior against the Edlink API reference and dashboard during
+  reconciliation; limits may vary by plan tier.
+sources:
+- https://ed.link/docs/api
+- https://ed.link/docs/guides/v2.0/getting-started/graph-user-meta-apis
+- https://ed.link/docs/guides/v2.0/getting-started/quickstart
+responseCodes:
+  throttled: 429
+limits:
+- name: Graph API Requests
+  scope: access_token
+  metric: requests
+  limit: see provider documentation
+  notes: Institution-level Graph API requests authenticated with an Integration Access Token.
+- name: User API Requests
+  scope: access_token
+  metric: requests
+  limit: see provider documentation
+  notes: User-scoped requests authenticated with a User Access Token from SSO.
+- name: Meta API Requests
+  scope: access_token
+  metric: requests
+  limit: see provider documentation
+  notes: Service-account platform-management requests; not for end users.
+- name: Page Size
+  scope: request
+  metric: records
+  limit: '10000'
+  notes: Maximum records per page via the $first pagination parameter; default 100.
+policies:
+- name: Cursor Pagination
+  description: Use $first with $after / $before cursors to page through large result sets efficiently.
+- name: Incremental Sync
+  description: Consume the change events stream to sync only deltas instead of re-fetching the full graph.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

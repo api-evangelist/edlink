@@ -1,0 +1,83 @@
+aid: edlink
+name: Edlink
+review:
+  question: Does Edlink expose a documented public WebSocket API?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was created. Edlink's API surface is request/response
+    REST (HTTPS) only. The platform supports incremental synchronization via a
+    polled change-events endpoint (GET /api/v2/graph/events), not a streaming
+    transport. No HTTP Server-Sent Events (SSE) stream and no WebSocket surface
+    is documented, so there is no event-driven channel to model.
+findings:
+  summary: |
+    Edlink does not publish a documented public WebSocket API. The Edlink API is
+    a normalized REST interface served under https://ed.link/api/v2 and
+    authenticated with a Bearer token (Integration Access Token for the Graph
+    API, User Access Token for the User API, Meta API token for service
+    accounts). Bulk roster data is read via paginated GET endpoints, and
+    incremental sync is achieved by polling the change-events endpoint rather
+    than subscribing to a push stream. No realtime, bidirectional WebSocket
+    (ws:// or wss://) endpoint is documented.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://ed.link/api/v2
+      documented: true
+    - protocol: Webhooks
+      scheme: https
+      note: Change data is surfaced through a polled events endpoint (GET /api/v2/graph/events) for incremental sync; this is HTTP request/response, not a persistent stream.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in Edlink's API reference, SSO guides, or platform pages as of the review date.
+  endpointsConfirmedRest:
+    - GET https://ed.link/api/v2/graph/people
+    - GET https://ed.link/api/v2/graph/people/{id}
+    - GET https://ed.link/api/v2/graph/classes
+    - GET https://ed.link/api/v2/graph/classes/{id}
+    - GET https://ed.link/api/v2/graph/enrollments
+    - GET https://ed.link/api/v2/graph/enrollments/{id}
+    - GET https://ed.link/api/v2/graph/schools
+    - GET https://ed.link/api/v2/graph/schools/{id}
+    - GET https://ed.link/api/v2/graph/districts
+    - GET https://ed.link/api/v2/graph/districts/{id}
+    - GET https://ed.link/api/v2/graph/courses
+    - GET https://ed.link/api/v2/graph/courses/{id}
+    - GET https://ed.link/api/v2/graph/sections
+    - GET https://ed.link/api/v2/graph/sections/{id}
+    - GET https://ed.link/api/v2/graph/agents
+    - GET https://ed.link/api/v2/graph/agents/{id}
+    - GET https://ed.link/api/v2/graph/events
+    - GET https://ed.link/api/v2/graph/integrations/{id}
+    - GET https://ed.link/api/v2/meta/integrations
+    - POST https://ed.link/api/v2/oauth2/token
+sources:
+  - url: https://ed.link/docs/api
+    type: APIReference
+    note: All documented endpoints are HTTPS REST under /api/v2.
+  - url: https://ed.link/docs/guides/v2.0/getting-started/graph-user-meta-apis
+    type: Documentation
+    note: Describes the Graph, User, and Meta APIs and their Bearer-token authorization; all request/response REST.
+  - url: https://ed.link/docs/api/v2.0/enrollments/overview
+    type: Documentation
+    note: Enrollment object schema; read via GET, no streaming transport.
+  - url: https://ed.link/docs/guides/v2.0/overview
+    type: Documentation
+    note: Platform overview; no WebSocket or SSE surface mentioned.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or SSE protocol surface exists. Edlink relies on paginated REST
+    reads plus a polled change-events endpoint for incremental sync, so no
+    AsyncAPI document was authored. The apis.yml catalogs the REST Graph API,
+    SSO, sources/integrations, and the events endpoint with OpenAPI as the
+    interface contract.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

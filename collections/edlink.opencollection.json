@@ -1,0 +1,333 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Edlink API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "People",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List people",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/people"
+          },
+          "docs": "Returns a paginated list of all people shared with the integration."
+        },
+        {
+          "info": {
+            "name": "Get a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/people/{id}"
+          },
+          "docs": "Returns a single person by Edlink UUID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Classes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List classes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/classes"
+          },
+          "docs": "Returns a paginated list of all classes shared with the integration."
+        },
+        {
+          "info": {
+            "name": "Get a class",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/classes/{id}"
+          },
+          "docs": "Returns a single class by Edlink UUID."
+        },
+        {
+          "info": {
+            "name": "List enrollments for a class",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/classes/{id}/enrollments"
+          },
+          "docs": "Returns the enrollments within a class."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Enrollments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List enrollments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/enrollments"
+          },
+          "docs": "Returns a paginated list of enrollments."
+        },
+        {
+          "info": {
+            "name": "Get an enrollment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/enrollments/{id}"
+          },
+          "docs": "Returns a single enrollment by Edlink UUID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Schools & Districts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List schools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/schools"
+          },
+          "docs": "Returns a paginated list of schools."
+        },
+        {
+          "info": {
+            "name": "Get a school",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/schools/{id}"
+          },
+          "docs": "Returns a single school by Edlink UUID."
+        },
+        {
+          "info": {
+            "name": "List districts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/districts"
+          },
+          "docs": "Returns a paginated list of districts."
+        },
+        {
+          "info": {
+            "name": "Get a district",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/districts/{id}"
+          },
+          "docs": "Returns a single district by Edlink UUID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Courses & Sections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List courses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/courses"
+          },
+          "docs": "Returns a paginated list of courses."
+        },
+        {
+          "info": {
+            "name": "Get a course",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/courses/{id}"
+          },
+          "docs": "Returns a single course by Edlink UUID."
+        },
+        {
+          "info": {
+            "name": "List sections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/sections"
+          },
+          "docs": "Returns a paginated list of sections."
+        },
+        {
+          "info": {
+            "name": "Get a section",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/sections/{id}"
+          },
+          "docs": "Returns a single section by Edlink UUID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Agents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List agents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/agents"
+          },
+          "docs": "Returns the source connection agents feeding the integration."
+        },
+        {
+          "info": {
+            "name": "Get an agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/agents/{id}"
+          },
+          "docs": "Returns a single agent by Edlink UUID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Sources & Integrations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get integration metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/integrations/{id}"
+          },
+          "docs": "Returns metadata about the integration tied to the current access token."
+        },
+        {
+          "info": {
+            "name": "List integrations (Meta API)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/meta/integrations"
+          },
+          "docs": "Service-account access to all integrations across the platform."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List change events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/events"
+          },
+          "docs": "Returns create, update, and delete events for incremental synchronization."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SSO",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the authenticated user profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/my/profile"
+          },
+          "docs": "Returns the profile of the user associated with a User Access Token."
+        },
+        {
+          "info": {
+            "name": "Exchange an authorization code for an access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ed.link/api/v2/oauth2/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "OAuth 2.0 token endpoint used during the SSO login flow."
+        }
+      ]
+    }
+  ]
+}

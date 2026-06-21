@@ -1,0 +1,124 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Edlink
+providerId: edlink
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Education
+- EdTech
+- Rostering
+- SIS
+- LMS
+- Integration
+- Unified API
+- Plans
+description: >-
+  Edlink uses a sales-led, usage-based pricing model aimed at edtech companies
+  rather than school districts. Pricing has two components: a recurring Monthly
+  Platform Fee that unlocks the functionality of a given tier, plus an Additional
+  Synced Person Fee charged per unique user whose data is provided to the
+  learning platform in a given month. Edlink markets Start, Grow, and Scale /
+  Enterprise tiers with monthly and annual agreements. Specific dollar amounts
+  are not publicly itemized per tier and must be confirmed with Edlink sales,
+  so they are not reconciled in this artifact.
+notes: >-
+  Public sources reference entry points around free / $499 / $2,999 and Start /
+  Grow / Scale tiers, but Edlink does not publish a complete itemized price
+  table; values vary by synced-person volume and contract term. Confirm against
+  the Edlink pricing pages and a sales quote during reconciliation.
+sources:
+- https://ed.link/pricing
+- https://ed.link/product/pricing
+- https://ed.link/community/pricing-faq/
+plans:
+- id: edlink-start
+  name: Start
+  type: subscription
+  description: >-
+    Entry tier for smaller integrations, combining a monthly platform fee with
+    a per-synced-person fee.
+  entries:
+  - label: Monthly Platform Fee
+    name: platform_fee
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: contact sales (see Edlink pricing page)
+    userMultiplied: false
+  - label: Additional Synced Person Fee
+    name: synced_person
+    type: usage
+    metric: synced_persons
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: per unique synced person, per month (contact sales)
+    userMultiplied: true
+  elements:
+  - name: Graph API
+  - name: SSO
+  - name: Roster Sync
+- id: edlink-grow
+  name: Grow
+  type: subscription
+  description: >-
+    Mid tier adding higher synced-person volume, broader product access, and
+    optional 30- or 60-day grace period under contract.
+  entries:
+  - label: Monthly Platform Fee
+    name: platform_fee
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: contact sales (see Edlink pricing page)
+    userMultiplied: false
+  - label: Additional Synced Person Fee
+    name: synced_person
+    type: usage
+    metric: synced_persons
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: per unique synced person, per month (contact sales)
+    userMultiplied: true
+  elements:
+  - name: Graph API
+  - name: SSO
+  - name: Events / Webhooks
+  - name: Priority Support
+- id: edlink-scale-enterprise
+  name: Scale / Enterprise
+  type: enterprise
+  description: >-
+    Volume tier with negotiated per-synced-person rates, longer agreements,
+    and the full breadth of Edlink products and services.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Volume Pricing
+  - name: All Integrations
+  - name: Dedicated Support
+  - name: Negotiated Terms
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,85 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Edlink
+providerId: edlink
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Education
+- EdTech
+- Rostering
+- SIS
+- LMS
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Edlink spend. Edlink bills edtech customers a recurring Monthly
+  Platform Fee per tier plus an Additional Synced Person Fee charged per unique
+  user whose data is provided to the learning platform each month. Because the
+  dominant cost driver is the count of synced persons, cost optimization centers
+  on minimizing the unique-user footprint actually synced per billing period.
+  Concrete per-tier and per-synced-person dollar amounts are sales-negotiated and
+  not publicly itemized, so they are not reconciled in this artifact.
+notes: >-
+  Confirm platform-fee amounts, per-synced-person rates, billing frequency, and
+  any annual-commitment discounts against an Edlink quote during reconciliation.
+sources:
+- https://ed.link/pricing
+- https://ed.link/community/pricing-faq/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Edlink
+serviceCategory: Education Integration
+billingModel:
+  pricingCategory: Subscription-Plus-Usage
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: Edlink API
+  ServiceCategory: Education Integration
+  ProviderName: Edlink
+  PublisherName: Edlink
+  InvoiceIssuerName: Edlink
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Subscription-Plus-Usage
+meters:
+- name: platform_fee
+  description: Recurring monthly platform fee that unlocks the functionality of the contracted tier.
+  unit: subscription
+  aggregation: flat
+  dimensions:
+  - account
+  - tier
+- name: synced_persons
+  description: Unique users whose data is provided to the learning platform in a billing month, billed per person.
+  unit: persons
+  aggregation: distinct_count
+  dimensions:
+  - account
+  - integration
+  - district
+principles:
+- name: Visibility
+  description: Track unique synced-person counts per integration and district against the contracted tier each month.
+- name: Allocation
+  description: Tag integrations and access tokens per customer or product so synced-person cost maps to internal cost centers.
+- name: Optimization
+  description: Limit syncs to the roster actually needed; prune inactive users and unshared schools to reduce per-synced-person fees; use incremental events to avoid over-provisioning.
+- name: Accountability
+  description: Assign owners per integration; review synced-person trends monthly against budget and tier thresholds.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
