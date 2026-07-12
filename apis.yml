@@ -125,6 +125,12 @@ apis:
     objects so integrations can incrementally sync rather than re-fetching the full
     graph.
 common:
+- type: DomainSecurity
+  url: security/edlink-domain-security.yml
+- type: Authentication
+  url: authentication/edlink-authentication.yml
+- url: https://ed.link/community/rss/
+  type: Blog
 - type: GitHubOrganization
   url: https://github.com/edlink
 - type: LinkedIn

@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/edlink-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: Edlink Integration Access Token, User Access Token, or Meta API token passed
+    as a Bearer token.
+  sources:
+  - openapi/edlink-openapi.yml
