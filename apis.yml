@@ -125,6 +125,8 @@ apis:
     objects so integrations can incrementally sync rather than re-fetching the full
     graph.
 common:
+- type: AgenticAccess
+  url: agentic-access/edlink-agentic-access.yml
 - type: DomainSecurity
   url: security/edlink-domain-security.yml
 - type: Authentication
