@@ -1,0 +1,162 @@
+openapi: 3.0.1
+info:
+  title: Edlink Agents SSO API
+  description: The Edlink API provides a unified, normalized interface to school roster and learning data across hundreds of SIS and LMS source systems. The Graph API operates at the institution level using an Integration Access Token to read districts, schools, classes, sections, courses, people, and enrollments that have been shared with an integration. Single Sign-On is provided over OAuth 2.0 and OpenID Connect, and source/integration metadata plus change events support incremental synchronization. All requests are authenticated with a Bearer token.
+  termsOfService: https://ed.link/legal/terms
+  contact:
+    name: Edlink Support
+    url: https://ed.link/docs
+    email: support@ed.link
+  version: '2.0'
+servers:
+- url: https://ed.link/api/v2
+  description: Edlink API v2
+security:
+- bearerAuth: []
+tags:
+- name: SSO
+  description: OAuth 2.0 and OpenID Connect single sign-on.
+paths:
+  /my/profile:
+    get:
+      operationId: getMyProfile
+      tags:
+      - SSO
+      summary: Get the authenticated user profile
+      description: Returns the profile of the user associated with a User Access Token obtained via SSO.
+      responses:
+        '200':
+          description: The authenticated user's profile.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonResponse'
+  /oauth2/token:
+    post:
+      operationId: createOauthToken
+      tags:
+      - SSO
+      summary: Exchange an authorization code for an access token
+      description: OAuth 2.0 token endpoint used during the SSO login flow to obtain a User Access Token.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRequest'
+      responses:
+        '200':
+          description: An access token response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '400':
+          description: Invalid request.
+components:
+  schemas:
+    PersonResponse:
+      type: object
+      properties:
+        $data:
+          $ref: '#/components/schemas/Person'
+    Person:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_date:
+          type: string
+          format: date-time
+        updated_date:
+          type: string
+          format: date-time
+        first_name:
+          type: string
+          nullable: true
+        middle_name:
+          type: string
+          nullable: true
+        last_name:
+          type: string
+          nullable: true
+        display_name:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        phone:
+          type: string
+          nullable: true
+        picture_url:
+          type: string
+          nullable: true
+        roles:
+          type: array
+          items:
+            type: string
+          description: One or more roles such as student, teacher, administrator, staff, guardian, district, observer.
+        demographics:
+          type: object
+          nullable: true
+        grade_levels:
+          type: array
+          items:
+            type: string
+        graduation_year:
+          type: string
+          nullable: true
+        district_id:
+          type: string
+          format: uuid
+          nullable: true
+        school_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+        identifiers:
+          type: array
+          items:
+            type: object
+        properties:
+          type: object
+          description: Non-standard custom properties from the source system.
+    TokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+          example: Bearer
+        expires_in:
+          type: integer
+        scope:
+          type: string
+    TokenRequest:
+      type: object
+      required:
+      - grant_type
+      - code
+      - client_id
+      - client_secret
+      properties:
+        grant_type:
+          type: string
+          example: authorization_code
+        code:
+          type: string
+        client_id:
+          type: string
+        client_secret:
+          type: string
+        redirect_uri:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Edlink Integration Access Token, User Access Token, or Meta API token passed as a Bearer token.

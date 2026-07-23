@@ -1,0 +1,141 @@
+openapi: 3.0.1
+info:
+  title: Edlink Agents API
+  description: The Edlink API provides a unified, normalized interface to school roster and learning data across hundreds of SIS and LMS source systems. The Graph API operates at the institution level using an Integration Access Token to read districts, schools, classes, sections, courses, people, and enrollments that have been shared with an integration. Single Sign-On is provided over OAuth 2.0 and OpenID Connect, and source/integration metadata plus change events support incremental synchronization. All requests are authenticated with a Bearer token.
+  termsOfService: https://ed.link/legal/terms
+  contact:
+    name: Edlink Support
+    url: https://ed.link/docs
+    email: support@ed.link
+  version: '2.0'
+servers:
+- url: https://ed.link/api/v2
+  description: Edlink API v2
+security:
+- bearerAuth: []
+tags:
+- name: Agents
+  description: Source connection agents.
+paths:
+  /graph/agents:
+    get:
+      operationId: listAgents
+      tags:
+      - Agents
+      summary: List agents
+      description: Returns the source connection agents that feed data into the integration.
+      parameters:
+      - $ref: '#/components/parameters/First'
+      - $ref: '#/components/parameters/After'
+      responses:
+        '200':
+          description: A paginated list of agents.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentList'
+  /graph/agents/{id}:
+    get:
+      operationId: getAgent
+      tags:
+      - Agents
+      summary: Get an agent
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: A single agent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      description: Edlink UUID of the resource.
+      schema:
+        type: string
+        format: uuid
+    First:
+      name: $first
+      in: query
+      required: false
+      description: Number of records to return per page (pagination).
+      schema:
+        type: integer
+        default: 100
+        maximum: 10000
+    After:
+      name: $after
+      in: query
+      required: false
+      description: Cursor for fetching the page after this value.
+      schema:
+        type: string
+  responses:
+    NotFound:
+      description: The resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        type:
+          type: string
+        code:
+          type: integer
+    AgentList:
+      type: object
+      properties:
+        $data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Agent'
+        $next:
+          type: string
+          nullable: true
+    Agent:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_date:
+          type: string
+          format: date-time
+        updated_date:
+          type: string
+          format: date-time
+        name:
+          type: string
+        type:
+          type: string
+          description: The source connection type the agent represents.
+        status:
+          type: string
+        district_id:
+          type: string
+          format: uuid
+          nullable: true
+        properties:
+          type: object
+    AgentResponse:
+      type: object
+      properties:
+        $data:
+          $ref: '#/components/schemas/Agent'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Edlink Integration Access Token, User Access Token, or Meta API token passed as a Bearer token.

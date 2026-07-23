@@ -1,0 +1,158 @@
+openapi: 3.0.1
+info:
+  title: Edlink Agents Courses API
+  description: The Edlink API provides a unified, normalized interface to school roster and learning data across hundreds of SIS and LMS source systems. The Graph API operates at the institution level using an Integration Access Token to read districts, schools, classes, sections, courses, people, and enrollments that have been shared with an integration. Single Sign-On is provided over OAuth 2.0 and OpenID Connect, and source/integration metadata plus change events support incremental synchronization. All requests are authenticated with a Bearer token.
+  termsOfService: https://ed.link/legal/terms
+  contact:
+    name: Edlink Support
+    url: https://ed.link/docs
+    email: support@ed.link
+  version: '2.0'
+servers:
+- url: https://ed.link/api/v2
+  description: Edlink API v2
+security:
+- bearerAuth: []
+tags:
+- name: Courses
+  description: Course catalog.
+paths:
+  /graph/courses:
+    get:
+      operationId: listCourses
+      tags:
+      - Courses
+      summary: List courses
+      parameters:
+      - $ref: '#/components/parameters/First'
+      - $ref: '#/components/parameters/After'
+      responses:
+        '200':
+          description: A paginated list of courses.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CourseList'
+  /graph/courses/{id}:
+    get:
+      operationId: getCourse
+      tags:
+      - Courses
+      summary: Get a course
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: A single course.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CourseResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      description: Edlink UUID of the resource.
+      schema:
+        type: string
+        format: uuid
+    After:
+      name: $after
+      in: query
+      required: false
+      description: Cursor for fetching the page after this value.
+      schema:
+        type: string
+    First:
+      name: $first
+      in: query
+      required: false
+      description: Number of records to return per page (pagination).
+      schema:
+        type: integer
+        default: 100
+        maximum: 10000
+  responses:
+    NotFound:
+      description: The resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    CourseResponse:
+      type: object
+      properties:
+        $data:
+          $ref: '#/components/schemas/Course'
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        type:
+          type: string
+        code:
+          type: integer
+    CourseList:
+      type: object
+      properties:
+        $data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Course'
+        $next:
+          type: string
+          nullable: true
+    Course:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_date:
+          type: string
+          format: date-time
+        updated_date:
+          type: string
+          format: date-time
+        name:
+          type: string
+        code:
+          type: string
+          nullable: true
+        grade_levels:
+          type: array
+          items:
+            type: string
+        subjects:
+          type: array
+          items:
+            type: string
+        session_id:
+          type: string
+          format: uuid
+          nullable: true
+        school_id:
+          type: string
+          format: uuid
+          nullable: true
+        district_id:
+          type: string
+          format: uuid
+          nullable: true
+        identifiers:
+          type: array
+          items:
+            type: object
+        properties:
+          type: object
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Edlink Integration Access Token, User Access Token, or Meta API token passed as a Bearer token.

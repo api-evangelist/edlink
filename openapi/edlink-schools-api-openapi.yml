@@ -1,0 +1,152 @@
+openapi: 3.0.1
+info:
+  title: Edlink Agents Schools API
+  description: The Edlink API provides a unified, normalized interface to school roster and learning data across hundreds of SIS and LMS source systems. The Graph API operates at the institution level using an Integration Access Token to read districts, schools, classes, sections, courses, people, and enrollments that have been shared with an integration. Single Sign-On is provided over OAuth 2.0 and OpenID Connect, and source/integration metadata plus change events support incremental synchronization. All requests are authenticated with a Bearer token.
+  termsOfService: https://ed.link/legal/terms
+  contact:
+    name: Edlink Support
+    url: https://ed.link/docs
+    email: support@ed.link
+  version: '2.0'
+servers:
+- url: https://ed.link/api/v2
+  description: Edlink API v2
+security:
+- bearerAuth: []
+tags:
+- name: Schools
+  description: Schools within a district.
+paths:
+  /graph/schools:
+    get:
+      operationId: listSchools
+      tags:
+      - Schools
+      summary: List schools
+      parameters:
+      - $ref: '#/components/parameters/First'
+      - $ref: '#/components/parameters/After'
+      responses:
+        '200':
+          description: A paginated list of schools.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchoolList'
+  /graph/schools/{id}:
+    get:
+      operationId: getSchool
+      tags:
+      - Schools
+      summary: Get a school
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: A single school.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchoolResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    School:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_date:
+          type: string
+          format: date-time
+        updated_date:
+          type: string
+          format: date-time
+        name:
+          type: string
+        grade_levels:
+          type: array
+          items:
+            type: string
+        locale:
+          type: string
+          nullable: true
+        time_zone:
+          type: string
+          nullable: true
+        location:
+          type: object
+          nullable: true
+        district_id:
+          type: string
+          format: uuid
+          nullable: true
+        identifiers:
+          type: array
+          items:
+            type: object
+        properties:
+          type: object
+    SchoolResponse:
+      type: object
+      properties:
+        $data:
+          $ref: '#/components/schemas/School'
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        type:
+          type: string
+        code:
+          type: integer
+    SchoolList:
+      type: object
+      properties:
+        $data:
+          type: array
+          items:
+            $ref: '#/components/schemas/School'
+        $next:
+          type: string
+          nullable: true
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      description: Edlink UUID of the resource.
+      schema:
+        type: string
+        format: uuid
+    First:
+      name: $first
+      in: query
+      required: false
+      description: Number of records to return per page (pagination).
+      schema:
+        type: integer
+        default: 100
+        maximum: 10000
+    After:
+      name: $after
+      in: query
+      required: false
+      description: Cursor for fetching the page after this value.
+      schema:
+        type: string
+  responses:
+    NotFound:
+      description: The resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Edlink Integration Access Token, User Access Token, or Meta API token passed as a Bearer token.

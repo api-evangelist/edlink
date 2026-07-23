@@ -1,15 +1,7 @@
 openapi: 3.0.1
 info:
-  title: Edlink API
-  description: >-
-    The Edlink API provides a unified, normalized interface to school roster and
-    learning data across hundreds of SIS and LMS source systems. The Graph API
-    operates at the institution level using an Integration Access Token to read
-    districts, schools, classes, sections, courses, people, and enrollments that
-    have been shared with an integration. Single Sign-On is provided over OAuth
-    2.0 and OpenID Connect, and source/integration metadata plus change events
-    support incremental synchronization. All requests are authenticated with a
-    Bearer token.
+  title: Edlink Agents Graph API
+  description: The Edlink API provides a unified, normalized interface to school roster and learning data across hundreds of SIS and LMS source systems. The Graph API operates at the institution level using an Integration Access Token to read districts, schools, classes, sections, courses, people, and enrollments that have been shared with an integration. Single Sign-On is provided over OAuth 2.0 and OpenID Connect, and source/integration metadata plus change events support incremental synchronization. All requests are authenticated with a Bearer token.
   termsOfService: https://ed.link/legal/terms
   contact:
     name: Edlink Support
@@ -17,48 +9,25 @@ info:
     email: support@ed.link
   version: '2.0'
 servers:
-  - url: https://ed.link/api/v2
-    description: Edlink API v2
+- url: https://ed.link/api/v2
+  description: Edlink API v2
 security:
-  - bearerAuth: []
+- bearerAuth: []
 tags:
-  - name: Graph
-    description: Institution-level roster and school data.
-  - name: People
-    description: Students, teachers, and other people.
-  - name: Classes
-    description: Classes and their enrollments.
-  - name: Enrollments
-    description: Relationships between people and classes.
-  - name: Schools
-    description: Schools within a district.
-  - name: Districts
-    description: Districts shared with the integration.
-  - name: Courses
-    description: Course catalog.
-  - name: Sections
-    description: Sections that subdivide classes.
-  - name: Agents
-    description: Source connection agents.
-  - name: SSO
-    description: OAuth 2.0 and OpenID Connect single sign-on.
-  - name: Integrations
-    description: Source and integration metadata.
-  - name: Events
-    description: Change events for incremental sync.
+- name: Graph
+  description: Institution-level roster and school data.
 paths:
   /graph/people:
     get:
       operationId: listPeople
       tags:
-        - Graph
-        - People
+      - Graph
       summary: List people
       description: Returns a paginated list of all people (students, teachers, staff, guardians, administrators) shared with the integration.
       parameters:
-        - $ref: '#/components/parameters/First'
-        - $ref: '#/components/parameters/After'
-        - $ref: '#/components/parameters/Before'
+      - $ref: '#/components/parameters/First'
+      - $ref: '#/components/parameters/After'
+      - $ref: '#/components/parameters/Before'
       responses:
         '200':
           description: A paginated list of people.
@@ -72,12 +41,11 @@ paths:
     get:
       operationId: getPerson
       tags:
-        - Graph
-        - People
+      - Graph
       summary: Get a person
       description: Returns a single person by Edlink UUID.
       parameters:
-        - $ref: '#/components/parameters/Id'
+      - $ref: '#/components/parameters/Id'
       responses:
         '200':
           description: A single person.
@@ -93,14 +61,13 @@ paths:
     get:
       operationId: listClasses
       tags:
-        - Graph
-        - Classes
+      - Graph
       summary: List classes
       description: Returns a paginated list of all classes shared with the integration.
       parameters:
-        - $ref: '#/components/parameters/First'
-        - $ref: '#/components/parameters/After'
-        - $ref: '#/components/parameters/Before'
+      - $ref: '#/components/parameters/First'
+      - $ref: '#/components/parameters/After'
+      - $ref: '#/components/parameters/Before'
       responses:
         '200':
           description: A paginated list of classes.
@@ -114,11 +81,10 @@ paths:
     get:
       operationId: getClass
       tags:
-        - Graph
-        - Classes
+      - Graph
       summary: Get a class
       parameters:
-        - $ref: '#/components/parameters/Id'
+      - $ref: '#/components/parameters/Id'
       responses:
         '200':
           description: A single class.
@@ -132,13 +98,12 @@ paths:
     get:
       operationId: listClassEnrollments
       tags:
-        - Graph
-        - Enrollments
+      - Graph
       summary: List enrollments for a class
       parameters:
-        - $ref: '#/components/parameters/Id'
-        - $ref: '#/components/parameters/First'
-        - $ref: '#/components/parameters/After'
+      - $ref: '#/components/parameters/Id'
+      - $ref: '#/components/parameters/First'
+      - $ref: '#/components/parameters/After'
       responses:
         '200':
           description: Enrollments within the class.
@@ -150,14 +115,13 @@ paths:
     get:
       operationId: listEnrollments
       tags:
-        - Graph
-        - Enrollments
+      - Graph
       summary: List enrollments
       description: Returns a paginated list of enrollments describing the relationship between people and classes.
       parameters:
-        - $ref: '#/components/parameters/First'
-        - $ref: '#/components/parameters/After'
-        - $ref: '#/components/parameters/Before'
+      - $ref: '#/components/parameters/First'
+      - $ref: '#/components/parameters/After'
+      - $ref: '#/components/parameters/Before'
       responses:
         '200':
           description: A paginated list of enrollments.
@@ -171,11 +135,10 @@ paths:
     get:
       operationId: getEnrollment
       tags:
-        - Graph
-        - Enrollments
+      - Graph
       summary: Get an enrollment
       parameters:
-        - $ref: '#/components/parameters/Id'
+      - $ref: '#/components/parameters/Id'
       responses:
         '200':
           description: A single enrollment.
@@ -189,12 +152,11 @@ paths:
     get:
       operationId: listSchools
       tags:
-        - Graph
-        - Schools
+      - Graph
       summary: List schools
       parameters:
-        - $ref: '#/components/parameters/First'
-        - $ref: '#/components/parameters/After'
+      - $ref: '#/components/parameters/First'
+      - $ref: '#/components/parameters/After'
       responses:
         '200':
           description: A paginated list of schools.
@@ -206,11 +168,10 @@ paths:
     get:
       operationId: getSchool
       tags:
-        - Graph
-        - Schools
+      - Graph
       summary: Get a school
       parameters:
-        - $ref: '#/components/parameters/Id'
+      - $ref: '#/components/parameters/Id'
       responses:
         '200':
           description: A single school.
@@ -224,12 +185,11 @@ paths:
     get:
       operationId: listDistricts
       tags:
-        - Graph
-        - Districts
+      - Graph
       summary: List districts
       parameters:
-        - $ref: '#/components/parameters/First'
-        - $ref: '#/components/parameters/After'
+      - $ref: '#/components/parameters/First'
+      - $ref: '#/components/parameters/After'
       responses:
         '200':
           description: A paginated list of districts.
@@ -241,11 +201,10 @@ paths:
     get:
       operationId: getDistrict
       tags:
-        - Graph
-        - Districts
+      - Graph
       summary: Get a district
       parameters:
-        - $ref: '#/components/parameters/Id'
+      - $ref: '#/components/parameters/Id'
       responses:
         '200':
           description: A single district.
@@ -259,12 +218,11 @@ paths:
     get:
       operationId: listCourses
       tags:
-        - Graph
-        - Courses
+      - Graph
       summary: List courses
       parameters:
-        - $ref: '#/components/parameters/First'
-        - $ref: '#/components/parameters/After'
+      - $ref: '#/components/parameters/First'
+      - $ref: '#/components/parameters/After'
       responses:
         '200':
           description: A paginated list of courses.
@@ -276,11 +234,10 @@ paths:
     get:
       operationId: getCourse
       tags:
-        - Graph
-        - Courses
+      - Graph
       summary: Get a course
       parameters:
-        - $ref: '#/components/parameters/Id'
+      - $ref: '#/components/parameters/Id'
       responses:
         '200':
           description: A single course.
@@ -294,12 +251,11 @@ paths:
     get:
       operationId: listSections
       tags:
-        - Graph
-        - Sections
+      - Graph
       summary: List sections
       parameters:
-        - $ref: '#/components/parameters/First'
-        - $ref: '#/components/parameters/After'
+      - $ref: '#/components/parameters/First'
+      - $ref: '#/components/parameters/After'
       responses:
         '200':
           description: A paginated list of sections.
@@ -311,11 +267,10 @@ paths:
     get:
       operationId: getSection
       tags:
-        - Graph
-        - Sections
+      - Graph
       summary: Get a section
       parameters:
-        - $ref: '#/components/parameters/Id'
+      - $ref: '#/components/parameters/Id'
       responses:
         '200':
           description: A single section.
@@ -329,13 +284,12 @@ paths:
     get:
       operationId: listAgents
       tags:
-        - Graph
-        - Agents
+      - Graph
       summary: List agents
       description: Returns the source connection agents that feed data into the integration.
       parameters:
-        - $ref: '#/components/parameters/First'
-        - $ref: '#/components/parameters/After'
+      - $ref: '#/components/parameters/First'
+      - $ref: '#/components/parameters/After'
       responses:
         '200':
           description: A paginated list of agents.
@@ -347,11 +301,10 @@ paths:
     get:
       operationId: getAgent
       tags:
-        - Graph
-        - Agents
+      - Graph
       summary: Get an agent
       parameters:
-        - $ref: '#/components/parameters/Id'
+      - $ref: '#/components/parameters/Id'
       responses:
         '200':
           description: A single agent.
@@ -365,13 +318,12 @@ paths:
     get:
       operationId: listEvents
       tags:
-        - Graph
-        - Events
+      - Graph
       summary: List change events
       description: Returns a stream of create, update, and delete events for roster objects to support incremental synchronization.
       parameters:
-        - $ref: '#/components/parameters/First'
-        - $ref: '#/components/parameters/After'
+      - $ref: '#/components/parameters/First'
+      - $ref: '#/components/parameters/After'
       responses:
         '200':
           description: A paginated list of change events.
@@ -383,12 +335,11 @@ paths:
     get:
       operationId: getIntegration
       tags:
-        - Graph
-        - Integrations
+      - Graph
       summary: Get integration metadata
       description: Returns metadata about the integration tied to the current access token, including provider and status.
       parameters:
-        - $ref: '#/components/parameters/Id'
+      - $ref: '#/components/parameters/Id'
       responses:
         '200':
           description: Integration metadata.
@@ -396,128 +347,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/IntegrationResponse'
-  /meta/integrations:
-    get:
-      operationId: listIntegrations
-      tags:
-        - Integrations
-      summary: List integrations (Meta API)
-      description: Service-account access to all integrations across the platform. Requires a Meta API access token.
-      responses:
-        '200':
-          description: A list of integrations.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/IntegrationList'
-  /my/profile:
-    get:
-      operationId: getMyProfile
-      tags:
-        - SSO
-      summary: Get the authenticated user profile
-      description: Returns the profile of the user associated with a User Access Token obtained via SSO.
-      responses:
-        '200':
-          description: The authenticated user's profile.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PersonResponse'
-  /oauth2/token:
-    post:
-      operationId: createOauthToken
-      tags:
-        - SSO
-      summary: Exchange an authorization code for an access token
-      description: OAuth 2.0 token endpoint used during the SSO login flow to obtain a User Access Token.
-      requestBody:
-        required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/TokenRequest'
-      responses:
-        '200':
-          description: An access token response.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TokenResponse'
-        '400':
-          description: Invalid request.
 components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      description: Edlink Integration Access Token, User Access Token, or Meta API token passed as a Bearer token.
-  parameters:
-    Id:
-      name: id
-      in: path
-      required: true
-      description: Edlink UUID of the resource.
-      schema:
-        type: string
-        format: uuid
-    First:
-      name: $first
-      in: query
-      required: false
-      description: Number of records to return per page (pagination).
-      schema:
-        type: integer
-        default: 100
-        maximum: 10000
-    After:
-      name: $after
-      in: query
-      required: false
-      description: Cursor for fetching the page after this value.
-      schema:
-        type: string
-    Before:
-      name: $before
-      in: query
-      required: false
-      description: Cursor for fetching the page before this value.
-      schema:
-        type: string
-  responses:
-    Unauthorized:
-      description: Missing or invalid access token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Pagination:
-      type: object
-      properties:
-        next:
-          type: string
-          nullable: true
-          description: URL of the next page of results, or null.
-        previous:
-          type: string
-          nullable: true
-          description: URL of the previous page of results, or null.
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        type:
-          type: string
-        code:
-          type: integer
     Person:
       type: object
       properties:
@@ -582,21 +413,93 @@ components:
         properties:
           type: object
           description: Non-standard custom properties from the source system.
-    PersonList:
+    SectionList:
       type: object
       properties:
-        '$data':
+        $data:
           type: array
           items:
-            $ref: '#/components/schemas/Person'
-        '$next':
+            $ref: '#/components/schemas/Section'
+        $next:
           type: string
           nullable: true
     PersonResponse:
       type: object
       properties:
-        '$data':
+        $data:
           $ref: '#/components/schemas/Person'
+    PersonList:
+      type: object
+      properties:
+        $data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Person'
+        $next:
+          type: string
+          nullable: true
+    SectionResponse:
+      type: object
+      properties:
+        $data:
+          $ref: '#/components/schemas/Section'
+    Section:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_date:
+          type: string
+          format: date-time
+        updated_date:
+          type: string
+          format: date-time
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        picture_url:
+          type: string
+          nullable: true
+        state:
+          type: string
+        locale:
+          type: string
+          nullable: true
+        time_zone:
+          type: string
+          nullable: true
+        periods:
+          type: array
+          items:
+            type: string
+        class_id:
+          type: string
+          format: uuid
+          nullable: true
+        identifiers:
+          type: array
+          items:
+            type: object
+        properties:
+          type: object
+    AgentResponse:
+      type: object
+      properties:
+        $data:
+          $ref: '#/components/schemas/Agent'
+    ClassList:
+      type: object
+      properties:
+        $data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Class'
+        $next:
+          type: string
+          nullable: true
     Class:
       type: object
       properties:
@@ -657,21 +560,34 @@ components:
             type: object
         properties:
           type: object
-    ClassList:
+    DistrictResponse:
       type: object
       properties:
-        '$data':
-          type: array
-          items:
-            $ref: '#/components/schemas/Class'
-        '$next':
+        $data:
+          $ref: '#/components/schemas/District'
+    Integration:
+      type: object
+      properties:
+        id:
           type: string
+          format: uuid
+        created_date:
+          type: string
+          format: date-time
+        updated_date:
+          type: string
+          format: date-time
+        provider:
+          type: string
+          description: The source provider, such as Clever, ClassLink, Google Classroom, Canvas, Schoology, PowerSchool.
+        status:
+          type: string
+        team_id:
+          type: string
+          format: uuid
           nullable: true
-    ClassResponse:
-      type: object
-      properties:
-        '$data':
-          $ref: '#/components/schemas/Class'
+        properties:
+          type: object
     Enrollment:
       type: object
       properties:
@@ -724,21 +640,30 @@ components:
             type: object
         properties:
           type: object
-    EnrollmentList:
+    Error:
       type: object
       properties:
-        '$data':
-          type: array
-          items:
-            $ref: '#/components/schemas/Enrollment'
-        '$next':
+        message:
           type: string
-          nullable: true
+        type:
+          type: string
+        code:
+          type: integer
     EnrollmentResponse:
       type: object
       properties:
-        '$data':
+        $data:
           $ref: '#/components/schemas/Enrollment'
+    DistrictList:
+      type: object
+      properties:
+        $data:
+          type: array
+          items:
+            $ref: '#/components/schemas/District'
+        $next:
+          type: string
+          nullable: true
     School:
       type: object
       properties:
@@ -776,21 +701,51 @@ components:
             type: object
         properties:
           type: object
-    SchoolList:
+    ClassResponse:
       type: object
       properties:
-        '$data':
-          type: array
-          items:
-            $ref: '#/components/schemas/School'
-        '$next':
-          type: string
-          nullable: true
+        $data:
+          $ref: '#/components/schemas/Class'
     SchoolResponse:
       type: object
       properties:
-        '$data':
+        $data:
           $ref: '#/components/schemas/School'
+    AgentList:
+      type: object
+      properties:
+        $data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Agent'
+        $next:
+          type: string
+          nullable: true
+    Agent:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_date:
+          type: string
+          format: date-time
+        updated_date:
+          type: string
+          format: date-time
+        name:
+          type: string
+        type:
+          type: string
+          description: The source connection type the agent represents.
+        status:
+          type: string
+        district_id:
+          type: string
+          format: uuid
+          nullable: true
+        properties:
+          type: object
     District:
       type: object
       properties:
@@ -820,21 +775,68 @@ components:
             type: object
         properties:
           type: object
-    DistrictList:
+    EnrollmentList:
       type: object
       properties:
-        '$data':
+        $data:
           type: array
           items:
-            $ref: '#/components/schemas/District'
-        '$next':
+            $ref: '#/components/schemas/Enrollment'
+        $next:
           type: string
           nullable: true
-    DistrictResponse:
+    EventList:
       type: object
       properties:
-        '$data':
-          $ref: '#/components/schemas/District'
+        $data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+        $next:
+          type: string
+          nullable: true
+    CourseResponse:
+      type: object
+      properties:
+        $data:
+          $ref: '#/components/schemas/Course'
+    Event:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_date:
+          type: string
+          format: date-time
+        type:
+          type: string
+          description: The change type, such as created, updated, or deleted.
+        target_type:
+          type: string
+          description: The object type affected, such as person, class, or enrollment.
+        target_id:
+          type: string
+          format: uuid
+        integration_id:
+          type: string
+          format: uuid
+          nullable: true
+    CourseList:
+      type: object
+      properties:
+        $data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Course'
+        $next:
+          type: string
+          nullable: true
+    IntegrationResponse:
+      type: object
+      properties:
+        $data:
+          $ref: '#/components/schemas/Integration'
     Course:
       type: object
       properties:
@@ -878,216 +880,63 @@ components:
             type: object
         properties:
           type: object
-    CourseList:
+    SchoolList:
       type: object
       properties:
-        '$data':
+        $data:
           type: array
           items:
-            $ref: '#/components/schemas/Course'
-        '$next':
+            $ref: '#/components/schemas/School'
+        $next:
           type: string
           nullable: true
-    CourseResponse:
-      type: object
-      properties:
-        '$data':
-          $ref: '#/components/schemas/Course'
-    Section:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        created_date:
-          type: string
-          format: date-time
-        updated_date:
-          type: string
-          format: date-time
-        name:
-          type: string
-        description:
-          type: string
-          nullable: true
-        picture_url:
-          type: string
-          nullable: true
-        state:
-          type: string
-        locale:
-          type: string
-          nullable: true
-        time_zone:
-          type: string
-          nullable: true
-        periods:
-          type: array
-          items:
-            type: string
-        class_id:
-          type: string
-          format: uuid
-          nullable: true
-        identifiers:
-          type: array
-          items:
-            type: object
-        properties:
-          type: object
-    SectionList:
-      type: object
-      properties:
-        '$data':
-          type: array
-          items:
-            $ref: '#/components/schemas/Section'
-        '$next':
-          type: string
-          nullable: true
-    SectionResponse:
-      type: object
-      properties:
-        '$data':
-          $ref: '#/components/schemas/Section'
-    Agent:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        created_date:
-          type: string
-          format: date-time
-        updated_date:
-          type: string
-          format: date-time
-        name:
-          type: string
-        type:
-          type: string
-          description: The source connection type the agent represents.
-        status:
-          type: string
-        district_id:
-          type: string
-          format: uuid
-          nullable: true
-        properties:
-          type: object
-    AgentList:
-      type: object
-      properties:
-        '$data':
-          type: array
-          items:
-            $ref: '#/components/schemas/Agent'
-        '$next':
-          type: string
-          nullable: true
-    AgentResponse:
-      type: object
-      properties:
-        '$data':
-          $ref: '#/components/schemas/Agent'
-    Event:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        created_date:
-          type: string
-          format: date-time
-        type:
-          type: string
-          description: The change type, such as created, updated, or deleted.
-        target_type:
-          type: string
-          description: The object type affected, such as person, class, or enrollment.
-        target_id:
-          type: string
-          format: uuid
-        integration_id:
-          type: string
-          format: uuid
-          nullable: true
-    EventList:
-      type: object
-      properties:
-        '$data':
-          type: array
-          items:
-            $ref: '#/components/schemas/Event'
-        '$next':
-          type: string
-          nullable: true
-    Integration:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        created_date:
-          type: string
-          format: date-time
-        updated_date:
-          type: string
-          format: date-time
-        provider:
-          type: string
-          description: The source provider, such as Clever, ClassLink, Google Classroom, Canvas, Schoology, PowerSchool.
-        status:
-          type: string
-        team_id:
-          type: string
-          format: uuid
-          nullable: true
-        properties:
-          type: object
-    IntegrationList:
-      type: object
-      properties:
-        '$data':
-          type: array
-          items:
-            $ref: '#/components/schemas/Integration'
-        '$next':
-          type: string
-          nullable: true
-    IntegrationResponse:
-      type: object
-      properties:
-        '$data':
-          $ref: '#/components/schemas/Integration'
-    TokenRequest:
-      type: object
-      required:
-        - grant_type
-        - code
-        - client_id
-        - client_secret
-      properties:
-        grant_type:
-          type: string
-          example: authorization_code
-        code:
-          type: string
-        client_id:
-          type: string
-        client_secret:
-          type: string
-        redirect_uri:
-          type: string
-    TokenResponse:
-      type: object
-      properties:
-        access_token:
-          type: string
-        token_type:
-          type: string
-          example: Bearer
-        expires_in:
-          type: integer
-        scope:
-          type: string
+  parameters:
+    After:
+      name: $after
+      in: query
+      required: false
+      description: Cursor for fetching the page after this value.
+      schema:
+        type: string
+    First:
+      name: $first
+      in: query
+      required: false
+      description: Number of records to return per page (pagination).
+      schema:
+        type: integer
+        default: 100
+        maximum: 10000
+    Id:
+      name: id
+      in: path
+      required: true
+      description: Edlink UUID of the resource.
+      schema:
+        type: string
+        format: uuid
+    Before:
+      name: $before
+      in: query
+      required: false
+      description: Cursor for fetching the page before this value.
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Edlink Integration Access Token, User Access Token, or Meta API token passed as a Bearer token.

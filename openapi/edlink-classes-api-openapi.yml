@@ -1,0 +1,192 @@
+openapi: 3.0.1
+info:
+  title: Edlink Agents Classes API
+  description: The Edlink API provides a unified, normalized interface to school roster and learning data across hundreds of SIS and LMS source systems. The Graph API operates at the institution level using an Integration Access Token to read districts, schools, classes, sections, courses, people, and enrollments that have been shared with an integration. Single Sign-On is provided over OAuth 2.0 and OpenID Connect, and source/integration metadata plus change events support incremental synchronization. All requests are authenticated with a Bearer token.
+  termsOfService: https://ed.link/legal/terms
+  contact:
+    name: Edlink Support
+    url: https://ed.link/docs
+    email: support@ed.link
+  version: '2.0'
+servers:
+- url: https://ed.link/api/v2
+  description: Edlink API v2
+security:
+- bearerAuth: []
+tags:
+- name: Classes
+  description: Classes and their enrollments.
+paths:
+  /graph/classes:
+    get:
+      operationId: listClasses
+      tags:
+      - Classes
+      summary: List classes
+      description: Returns a paginated list of all classes shared with the integration.
+      parameters:
+      - $ref: '#/components/parameters/First'
+      - $ref: '#/components/parameters/After'
+      - $ref: '#/components/parameters/Before'
+      responses:
+        '200':
+          description: A paginated list of classes.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /graph/classes/{id}:
+    get:
+      operationId: getClass
+      tags:
+      - Classes
+      summary: Get a class
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: A single class.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    ClassList:
+      type: object
+      properties:
+        $data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Class'
+        $next:
+          type: string
+          nullable: true
+    Class:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_date:
+          type: string
+          format: date-time
+        updated_date:
+          type: string
+          format: date-time
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        picture_url:
+          type: string
+          nullable: true
+        state:
+          type: string
+          description: Lifecycle state such as active or inactive.
+        locale:
+          type: string
+          nullable: true
+        time_zone:
+          type: string
+          nullable: true
+        grade_levels:
+          type: array
+          items:
+            type: string
+        subjects:
+          type: array
+          items:
+            type: string
+        periods:
+          type: array
+          items:
+            type: string
+        session_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+        course_id:
+          type: string
+          format: uuid
+          nullable: true
+        school_id:
+          type: string
+          format: uuid
+          nullable: true
+        identifiers:
+          type: array
+          items:
+            type: object
+        properties:
+          type: object
+    ClassResponse:
+      type: object
+      properties:
+        $data:
+          $ref: '#/components/schemas/Class'
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        type:
+          type: string
+        code:
+          type: integer
+  responses:
+    Unauthorized:
+      description: Missing or invalid access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      description: Edlink UUID of the resource.
+      schema:
+        type: string
+        format: uuid
+    First:
+      name: $first
+      in: query
+      required: false
+      description: Number of records to return per page (pagination).
+      schema:
+        type: integer
+        default: 100
+        maximum: 10000
+    After:
+      name: $after
+      in: query
+      required: false
+      description: Cursor for fetching the page after this value.
+      schema:
+        type: string
+    Before:
+      name: $before
+      in: query
+      required: false
+      description: Cursor for fetching the page before this value.
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Edlink Integration Access Token, User Access Token, or Meta API token passed as a Bearer token.

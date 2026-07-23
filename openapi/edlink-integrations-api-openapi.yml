@@ -1,0 +1,103 @@
+openapi: 3.0.1
+info:
+  title: Edlink Agents Integrations API
+  description: The Edlink API provides a unified, normalized interface to school roster and learning data across hundreds of SIS and LMS source systems. The Graph API operates at the institution level using an Integration Access Token to read districts, schools, classes, sections, courses, people, and enrollments that have been shared with an integration. Single Sign-On is provided over OAuth 2.0 and OpenID Connect, and source/integration metadata plus change events support incremental synchronization. All requests are authenticated with a Bearer token.
+  termsOfService: https://ed.link/legal/terms
+  contact:
+    name: Edlink Support
+    url: https://ed.link/docs
+    email: support@ed.link
+  version: '2.0'
+servers:
+- url: https://ed.link/api/v2
+  description: Edlink API v2
+security:
+- bearerAuth: []
+tags:
+- name: Integrations
+  description: Source and integration metadata.
+paths:
+  /graph/integrations/{id}:
+    get:
+      operationId: getIntegration
+      tags:
+      - Integrations
+      summary: Get integration metadata
+      description: Returns metadata about the integration tied to the current access token, including provider and status.
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: Integration metadata.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationResponse'
+  /meta/integrations:
+    get:
+      operationId: listIntegrations
+      tags:
+      - Integrations
+      summary: List integrations (Meta API)
+      description: Service-account access to all integrations across the platform. Requires a Meta API access token.
+      responses:
+        '200':
+          description: A list of integrations.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationList'
+components:
+  schemas:
+    Integration:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_date:
+          type: string
+          format: date-time
+        updated_date:
+          type: string
+          format: date-time
+        provider:
+          type: string
+          description: The source provider, such as Clever, ClassLink, Google Classroom, Canvas, Schoology, PowerSchool.
+        status:
+          type: string
+        team_id:
+          type: string
+          format: uuid
+          nullable: true
+        properties:
+          type: object
+    IntegrationList:
+      type: object
+      properties:
+        $data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Integration'
+        $next:
+          type: string
+          nullable: true
+    IntegrationResponse:
+      type: object
+      properties:
+        $data:
+          $ref: '#/components/schemas/Integration'
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      description: Edlink UUID of the resource.
+      schema:
+        type: string
+        format: uuid
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Edlink Integration Access Token, User Access Token, or Meta API token passed as a Bearer token.

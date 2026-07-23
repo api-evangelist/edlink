@@ -1,0 +1,199 @@
+openapi: 3.0.1
+info:
+  title: Edlink Agents People API
+  description: The Edlink API provides a unified, normalized interface to school roster and learning data across hundreds of SIS and LMS source systems. The Graph API operates at the institution level using an Integration Access Token to read districts, schools, classes, sections, courses, people, and enrollments that have been shared with an integration. Single Sign-On is provided over OAuth 2.0 and OpenID Connect, and source/integration metadata plus change events support incremental synchronization. All requests are authenticated with a Bearer token.
+  termsOfService: https://ed.link/legal/terms
+  contact:
+    name: Edlink Support
+    url: https://ed.link/docs
+    email: support@ed.link
+  version: '2.0'
+servers:
+- url: https://ed.link/api/v2
+  description: Edlink API v2
+security:
+- bearerAuth: []
+tags:
+- name: People
+  description: Students, teachers, and other people.
+paths:
+  /graph/people:
+    get:
+      operationId: listPeople
+      tags:
+      - People
+      summary: List people
+      description: Returns a paginated list of all people (students, teachers, staff, guardians, administrators) shared with the integration.
+      parameters:
+      - $ref: '#/components/parameters/First'
+      - $ref: '#/components/parameters/After'
+      - $ref: '#/components/parameters/Before'
+      responses:
+        '200':
+          description: A paginated list of people.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /graph/people/{id}:
+    get:
+      operationId: getPerson
+      tags:
+      - People
+      summary: Get a person
+      description: Returns a single person by Edlink UUID.
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: A single person.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Person:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_date:
+          type: string
+          format: date-time
+        updated_date:
+          type: string
+          format: date-time
+        first_name:
+          type: string
+          nullable: true
+        middle_name:
+          type: string
+          nullable: true
+        last_name:
+          type: string
+          nullable: true
+        display_name:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        phone:
+          type: string
+          nullable: true
+        picture_url:
+          type: string
+          nullable: true
+        roles:
+          type: array
+          items:
+            type: string
+          description: One or more roles such as student, teacher, administrator, staff, guardian, district, observer.
+        demographics:
+          type: object
+          nullable: true
+        grade_levels:
+          type: array
+          items:
+            type: string
+        graduation_year:
+          type: string
+          nullable: true
+        district_id:
+          type: string
+          format: uuid
+          nullable: true
+        school_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+        identifiers:
+          type: array
+          items:
+            type: object
+        properties:
+          type: object
+          description: Non-standard custom properties from the source system.
+    PersonResponse:
+      type: object
+      properties:
+        $data:
+          $ref: '#/components/schemas/Person'
+    PersonList:
+      type: object
+      properties:
+        $data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Person'
+        $next:
+          type: string
+          nullable: true
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        type:
+          type: string
+        code:
+          type: integer
+  responses:
+    Unauthorized:
+      description: Missing or invalid access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      description: Edlink UUID of the resource.
+      schema:
+        type: string
+        format: uuid
+    First:
+      name: $first
+      in: query
+      required: false
+      description: Number of records to return per page (pagination).
+      schema:
+        type: integer
+        default: 100
+        maximum: 10000
+    After:
+      name: $after
+      in: query
+      required: false
+      description: Cursor for fetching the page after this value.
+      schema:
+        type: string
+    Before:
+      name: $before
+      in: query
+      required: false
+      description: Cursor for fetching the page before this value.
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Edlink Integration Access Token, User Access Token, or Meta API token passed as a Bearer token.

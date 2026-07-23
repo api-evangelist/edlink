@@ -1,0 +1,92 @@
+openapi: 3.0.1
+info:
+  title: Edlink Agents Events API
+  description: The Edlink API provides a unified, normalized interface to school roster and learning data across hundreds of SIS and LMS source systems. The Graph API operates at the institution level using an Integration Access Token to read districts, schools, classes, sections, courses, people, and enrollments that have been shared with an integration. Single Sign-On is provided over OAuth 2.0 and OpenID Connect, and source/integration metadata plus change events support incremental synchronization. All requests are authenticated with a Bearer token.
+  termsOfService: https://ed.link/legal/terms
+  contact:
+    name: Edlink Support
+    url: https://ed.link/docs
+    email: support@ed.link
+  version: '2.0'
+servers:
+- url: https://ed.link/api/v2
+  description: Edlink API v2
+security:
+- bearerAuth: []
+tags:
+- name: Events
+  description: Change events for incremental sync.
+paths:
+  /graph/events:
+    get:
+      operationId: listEvents
+      tags:
+      - Events
+      summary: List change events
+      description: Returns a stream of create, update, and delete events for roster objects to support incremental synchronization.
+      parameters:
+      - $ref: '#/components/parameters/First'
+      - $ref: '#/components/parameters/After'
+      responses:
+        '200':
+          description: A paginated list of change events.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventList'
+components:
+  schemas:
+    Event:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_date:
+          type: string
+          format: date-time
+        type:
+          type: string
+          description: The change type, such as created, updated, or deleted.
+        target_type:
+          type: string
+          description: The object type affected, such as person, class, or enrollment.
+        target_id:
+          type: string
+          format: uuid
+        integration_id:
+          type: string
+          format: uuid
+          nullable: true
+    EventList:
+      type: object
+      properties:
+        $data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+        $next:
+          type: string
+          nullable: true
+  parameters:
+    First:
+      name: $first
+      in: query
+      required: false
+      description: Number of records to return per page (pagination).
+      schema:
+        type: integer
+        default: 100
+        maximum: 10000
+    After:
+      name: $after
+      in: query
+      required: false
+      description: Cursor for fetching the page after this value.
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Edlink Integration Access Token, User Access Token, or Meta API token passed as a Bearer token.

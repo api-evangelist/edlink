@@ -1,0 +1,201 @@
+openapi: 3.0.1
+info:
+  title: Edlink Agents Enrollments API
+  description: The Edlink API provides a unified, normalized interface to school roster and learning data across hundreds of SIS and LMS source systems. The Graph API operates at the institution level using an Integration Access Token to read districts, schools, classes, sections, courses, people, and enrollments that have been shared with an integration. Single Sign-On is provided over OAuth 2.0 and OpenID Connect, and source/integration metadata plus change events support incremental synchronization. All requests are authenticated with a Bearer token.
+  termsOfService: https://ed.link/legal/terms
+  contact:
+    name: Edlink Support
+    url: https://ed.link/docs
+    email: support@ed.link
+  version: '2.0'
+servers:
+- url: https://ed.link/api/v2
+  description: Edlink API v2
+security:
+- bearerAuth: []
+tags:
+- name: Enrollments
+  description: Relationships between people and classes.
+paths:
+  /graph/classes/{id}/enrollments:
+    get:
+      operationId: listClassEnrollments
+      tags:
+      - Enrollments
+      summary: List enrollments for a class
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      - $ref: '#/components/parameters/First'
+      - $ref: '#/components/parameters/After'
+      responses:
+        '200':
+          description: Enrollments within the class.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnrollmentList'
+  /graph/enrollments:
+    get:
+      operationId: listEnrollments
+      tags:
+      - Enrollments
+      summary: List enrollments
+      description: Returns a paginated list of enrollments describing the relationship between people and classes.
+      parameters:
+      - $ref: '#/components/parameters/First'
+      - $ref: '#/components/parameters/After'
+      - $ref: '#/components/parameters/Before'
+      responses:
+        '200':
+          description: A paginated list of enrollments.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnrollmentList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /graph/enrollments/{id}:
+    get:
+      operationId: getEnrollment
+      tags:
+      - Enrollments
+      summary: Get an enrollment
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: A single enrollment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnrollmentResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      description: Edlink UUID of the resource.
+      schema:
+        type: string
+        format: uuid
+    First:
+      name: $first
+      in: query
+      required: false
+      description: Number of records to return per page (pagination).
+      schema:
+        type: integer
+        default: 100
+        maximum: 10000
+    After:
+      name: $after
+      in: query
+      required: false
+      description: Cursor for fetching the page after this value.
+      schema:
+        type: string
+    Before:
+      name: $before
+      in: query
+      required: false
+      description: Cursor for fetching the page before this value.
+      schema:
+        type: string
+  schemas:
+    Enrollment:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_date:
+          type: string
+          format: date-time
+        updated_date:
+          type: string
+          format: date-time
+        start_date:
+          type: string
+          format: date
+          nullable: true
+        end_date:
+          type: string
+          format: date
+          nullable: true
+        role:
+          type: string
+          description: The person's role in the class, such as student or teacher.
+        primary:
+          type: boolean
+          nullable: true
+          description: Indicates the primary teacher, when applicable.
+        state:
+          type: string
+          description: Current enrollment state.
+        person_id:
+          type: string
+          format: uuid
+        class_id:
+          type: string
+          format: uuid
+        section_id:
+          type: string
+          format: uuid
+          nullable: true
+        final_letter_grade:
+          type: string
+          nullable: true
+        final_numeric_grade:
+          type: number
+          nullable: true
+        identifiers:
+          type: array
+          items:
+            type: object
+        properties:
+          type: object
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        type:
+          type: string
+        code:
+          type: integer
+    EnrollmentResponse:
+      type: object
+      properties:
+        $data:
+          $ref: '#/components/schemas/Enrollment'
+    EnrollmentList:
+      type: object
+      properties:
+        $data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Enrollment'
+        $next:
+          type: string
+          nullable: true
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Edlink Integration Access Token, User Access Token, or Meta API token passed as a Bearer token.
