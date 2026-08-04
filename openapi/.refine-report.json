@@ -1,0 +1,36 @@
+{
+  "provider": "edlink",
+  "sources": [
+    "edlink-agents-api-openapi.yml",
+    "edlink-classes-api-openapi.yml",
+    "edlink-courses-api-openapi.yml",
+    "edlink-districts-api-openapi.yml",
+    "edlink-enrollments-api-openapi.yml",
+    "edlink-events-api-openapi.yml",
+    "edlink-graph-api-openapi.yml",
+    "edlink-integrations-api-openapi.yml",
+    "edlink-people-api-openapi.yml",
+    "edlink-schools-api-openapi.yml",
+    "edlink-sections-api-openapi.yml",
+    "edlink-sso-api-openapi.yml"
+  ],
+  "outputs": [
+    "edlink-agents-api-openapi.yml",
+    "edlink-classes-api-openapi.yml",
+    "edlink-courses-api-openapi.yml",
+    "edlink-districts-api-openapi.yml",
+    "edlink-enrollments-api-openapi.yml",
+    "edlink-events-api-openapi.yml",
+    "edlink-graph-api-openapi.yml",
+    "edlink-integrations-api-openapi.yml",
+    "edlink-people-api-openapi.yml",
+    "edlink-schools-api-openapi.yml",
+    "edlink-sections-api-openapi.yml",
+    "edlink-sso-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
