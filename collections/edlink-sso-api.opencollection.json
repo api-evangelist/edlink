@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Edlink Agents SSO API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SSO",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the authenticated user profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/my/profile"
+          },
+          "docs": "Returns the profile of the user associated with a User Access Token obtained via SSO."
+        },
+        {
+          "info": {
+            "name": "Exchange an authorization code for an access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ed.link/api/v2/oauth2/token",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "OAuth 2.0 token endpoint used during the SSO login flow to obtain a User Access Token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

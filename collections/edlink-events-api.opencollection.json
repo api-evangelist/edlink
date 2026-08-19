@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Edlink Agents Events API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List change events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/events",
+            "params": [
+              {
+                "name": "$first",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return per page (pagination)."
+              },
+              {
+                "name": "$after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for fetching the page after this value."
+              }
+            ]
+          },
+          "docs": "Returns a stream of create, update, and delete events for roster objects to support incremental synchronization."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

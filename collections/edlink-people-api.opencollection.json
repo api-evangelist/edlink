@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Edlink Agents People API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "People",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List people",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/people",
+            "params": [
+              {
+                "name": "$first",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return per page (pagination)."
+              },
+              {
+                "name": "$after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for fetching the page after this value."
+              },
+              {
+                "name": "$before",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for fetching the page before this value."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of all people (students, teachers, staff, guardians, administrators) shared with the integration."
+        },
+        {
+          "info": {
+            "name": "Get a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/people/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Edlink UUID of the resource."
+              }
+            ]
+          },
+          "docs": "Returns a single person by Edlink UUID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

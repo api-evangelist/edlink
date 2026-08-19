@@ -1,0 +1,105 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Edlink Agents Enrollments API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Enrollments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List enrollments for a class",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/classes/:id/enrollments",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Edlink UUID of the resource."
+              },
+              {
+                "name": "$first",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return per page (pagination)."
+              },
+              {
+                "name": "$after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for fetching the page after this value."
+              }
+            ]
+          },
+          "docs": "List enrollments for a class"
+        },
+        {
+          "info": {
+            "name": "List enrollments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/enrollments",
+            "params": [
+              {
+                "name": "$first",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return per page (pagination)."
+              },
+              {
+                "name": "$after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for fetching the page after this value."
+              },
+              {
+                "name": "$before",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for fetching the page before this value."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of enrollments describing the relationship between people and classes."
+        },
+        {
+          "info": {
+            "name": "Get an enrollment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/enrollments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Edlink UUID of the resource."
+              }
+            ]
+          },
+          "docs": "Get an enrollment"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

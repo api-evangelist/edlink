@@ -1,0 +1,288 @@
+{
+  "item": [
+    {
+      "id": "9e4e6c37-5e44-4f79-9f4b-30e1ad77c269",
+      "name": "Schools",
+      "description": {
+        "content": "Schools within a district.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "40884d58-73dc-4a5d-b4a9-2a7f5a78b19a",
+          "name": "List schools",
+          "request": {
+            "name": "List schools",
+            "description": {},
+            "url": {
+              "path": [
+                "graph",
+                "schools"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$first",
+                  "value": "100",
+                  "description": "Number of records to return per page (pagination)."
+                },
+                {
+                  "disabled": false,
+                  "key": "$after",
+                  "value": "<string>",
+                  "description": "Cursor for fetching the page after this value."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5329e593-cf13-40d5-80b7-aac6ad104787",
+              "name": "A paginated list of schools.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graph",
+                    "schools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$first",
+                      "value": "100"
+                    },
+                    {
+                      "key": "$after",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$data\": [\n    {\n      \"id\": \"b09eedc8-9690-40b9-0644-9c713b5c3abe\",\n      \"created_date\": \"1979-11-27T11:57:34.653Z\",\n      \"updated_date\": \"1997-08-12T12:09:31.919Z\",\n      \"name\": \"string\",\n      \"grade_levels\": [\n        \"string\",\n        \"string\"\n      ],\n      \"locale\": \"string\",\n      \"time_zone\": \"string\",\n      \"location\": {},\n      \"district_id\": \"17798d79-3803-2659-806c-16bc9d2b0406\",\n      \"properties\": {}\n    },\n    {\n      \"id\": \"f186acf6-dca0-97b2-04e8-4fa539519816\",\n      \"created_date\": \"2002-08-04T12:05:43.921Z\",\n      \"updated_date\": \"1973-06-02T00:47:55.140Z\",\n      \"name\": \"string\",\n      \"grade_levels\": [\n        \"string\",\n        \"string\"\n      ],\n      \"locale\": \"string\",\n      \"time_zone\": \"string\",\n      \"location\": {},\n      \"district_id\": \"7d2ce7b0-969a-c61a-9624-794da7d2da44\",\n      \"properties\": {}\n    }\n  ],\n  \"$next\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4e5fc40a-aff3-4429-996d-6fcca494e6ca",
+          "name": "Get a school",
+          "request": {
+            "name": "Get a school",
+            "description": {},
+            "url": {
+              "path": [
+                "graph",
+                "schools",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) Edlink UUID of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2a8cdd09-09f4-406e-a434-6a2fa8673c5f",
+              "name": "A single school.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graph",
+                    "schools",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Edlink UUID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$data\": {\n    \"id\": \"808c14a8-80f0-86bb-f229-346cda2f9e40\",\n    \"created_date\": \"1975-05-23T12:28:29.055Z\",\n    \"updated_date\": \"2007-02-11T08:02:18.658Z\",\n    \"name\": \"string\",\n    \"grade_levels\": [\n      \"string\",\n      \"string\"\n    ],\n    \"locale\": \"string\",\n    \"time_zone\": \"string\",\n    \"location\": {},\n    \"district_id\": \"200670fc-098c-31ff-2eaa-6f51197a575a\",\n    \"properties\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a49305a-06d3-4de2-ab02-42c21068b854",
+              "name": "The resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graph",
+                    "schools",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Edlink UUID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"type\": \"string\",\n  \"code\": 7747\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ed.link/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "50ea632d-42f2-49d2-b8da-38efbb439cca",
+    "name": "Edlink Agents Schools API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Edlink API provides a unified, normalized interface to school roster and learning data across hundreds of SIS and LMS source systems. The Graph API operates at the institution level using an Integration Access Token to read districts, schools, classes, sections, courses, people, and enrollments that have been shared with an integration. Single Sign-On is provided over OAuth 2.0 and OpenID Connect, and source/integration metadata plus change events support incremental synchronization. All requests are authenticated with a Bearer token.\n\nContact Support:\n Name: Edlink Support\n Email: support@ed.link",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Edlink Agents Districts API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Districts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List districts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/districts",
+            "params": [
+              {
+                "name": "$first",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return per page (pagination)."
+              },
+              {
+                "name": "$after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for fetching the page after this value."
+              }
+            ]
+          },
+          "docs": "List districts"
+        },
+        {
+          "info": {
+            "name": "Get a district",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/districts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Edlink UUID of the resource."
+              }
+            ]
+          },
+          "docs": "Get a district"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

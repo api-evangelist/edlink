@@ -1,0 +1,219 @@
+{
+  "item": [
+    {
+      "id": "e351d7a8-f4c9-4ef1-b77f-70996a7e568c",
+      "name": "Integrations",
+      "description": {
+        "content": "Source and integration metadata.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "239f4f69-9c05-4f08-b6df-412f9b0d6980",
+          "name": "Get integration metadata",
+          "request": {
+            "name": "Get integration metadata",
+            "description": {
+              "content": "Returns metadata about the integration tied to the current access token, including provider and status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "graph",
+                "integrations",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) Edlink UUID of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c47ce950-9811-4750-94e3-49cdd8518add",
+              "name": "Integration metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graph",
+                    "integrations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Edlink UUID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$data\": {\n    \"id\": \"1e34744b-d3f9-57d5-88f5-0fefecc512c2\",\n    \"created_date\": \"1983-11-04T00:49:40.334Z\",\n    \"updated_date\": \"2014-01-05T13:37:15.541Z\",\n    \"provider\": \"string\",\n    \"status\": \"string\",\n    \"team_id\": \"168a1f2b-350b-95ac-3c87-063c7491a090\",\n    \"properties\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7615225a-c0d5-4399-84e9-0fffc33f6164",
+          "name": "List integrations (Meta API)",
+          "request": {
+            "name": "List integrations (Meta API)",
+            "description": {
+              "content": "Service-account access to all integrations across the platform. Requires a Meta API access token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "meta",
+                "integrations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e2e8df51-0dda-4906-964d-bff9bb0fc0e1",
+              "name": "A list of integrations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "meta",
+                    "integrations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$data\": [\n    {\n      \"id\": \"2514c2ee-e39b-10a8-02fa-4f33aa83c492\",\n      \"created_date\": \"2022-02-12T13:50:09.735Z\",\n      \"updated_date\": \"1968-11-28T13:45:49.911Z\",\n      \"provider\": \"string\",\n      \"status\": \"string\",\n      \"team_id\": \"3c999e6e-7b40-f258-a0a2-9ec4cc32b16a\",\n      \"properties\": {}\n    },\n    {\n      \"id\": \"ad5afaa0-395b-0c7d-bfed-9f6fde94b46a\",\n      \"created_date\": \"1997-02-25T06:41:26.267Z\",\n      \"updated_date\": \"2004-03-05T11:48:15.333Z\",\n      \"provider\": \"string\",\n      \"status\": \"string\",\n      \"team_id\": \"269cf9cb-3de4-580d-0b9d-4a32e636ce8a\",\n      \"properties\": {}\n    }\n  ],\n  \"$next\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ed.link/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1eb4916e-cf3e-4a30-b962-824c54cbe029",
+    "name": "Edlink Agents Integrations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Edlink API provides a unified, normalized interface to school roster and learning data across hundreds of SIS and LMS source systems. The Graph API operates at the institution level using an Integration Access Token to read districts, schools, classes, sections, courses, people, and enrollments that have been shared with an integration. Single Sign-On is provided over OAuth 2.0 and OpenID Connect, and source/integration metadata plus change events support incremental synchronization. All requests are authenticated with a Bearer token.\n\nContact Support:\n Name: Edlink Support\n Email: support@ed.link",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "item": [
+    {
+      "id": "3bd47abc-b055-43aa-b5f7-57422c0ba858",
+      "name": "Events",
+      "description": {
+        "content": "Change events for incremental sync.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ec464c35-1db6-4dff-afab-14d070f975ff",
+          "name": "List change events",
+          "request": {
+            "name": "List change events",
+            "description": {
+              "content": "Returns a stream of create, update, and delete events for roster objects to support incremental synchronization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "graph",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$first",
+                  "value": "100",
+                  "description": "Number of records to return per page (pagination)."
+                },
+                {
+                  "disabled": false,
+                  "key": "$after",
+                  "value": "<string>",
+                  "description": "Cursor for fetching the page after this value."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eb2cebc2-b151-4ef6-bb05-95a6ddee4556",
+              "name": "A paginated list of change events.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graph",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$first",
+                      "value": "100"
+                    },
+                    {
+                      "key": "$after",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$data\": [\n    {\n      \"id\": \"b26b821d-22df-1471-7a0d-b75f41fd4795\",\n      \"created_date\": \"1985-02-24T04:34:12.683Z\",\n      \"type\": \"string\",\n      \"target_type\": \"string\",\n      \"target_id\": \"640f5371-ebc4-da85-d0b6-81762a76bfe9\",\n      \"integration_id\": \"bb5d187b-c1e4-fc42-5c90-31ac88a0af8c\"\n    },\n    {\n      \"id\": \"da862a3b-659c-2362-1281-c47422fd9eba\",\n      \"created_date\": \"2000-01-12T17:19:48.777Z\",\n      \"type\": \"string\",\n      \"target_type\": \"string\",\n      \"target_id\": \"0f668bab-ddc9-e2d1-4e77-a03b2fc6c1c8\",\n      \"integration_id\": \"966f57ea-7a23-3567-a2d9-dd6c2a797c2c\"\n    }\n  ],\n  \"$next\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ed.link/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "763008ce-5cb7-4b6f-99c1-04847634c32f",
+    "name": "Edlink Agents Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Edlink API provides a unified, normalized interface to school roster and learning data across hundreds of SIS and LMS source systems. The Graph API operates at the institution level using an Integration Access Token to read districts, schools, classes, sections, courses, people, and enrollments that have been shared with an integration. Single Sign-On is provided over OAuth 2.0 and OpenID Connect, and source/integration metadata plus change events support incremental synchronization. All requests are authenticated with a Bearer token.\n\nContact Support:\n Name: Edlink Support\n Email: support@ed.link",
+      "type": "text/plain"
+    }
+  }
+}

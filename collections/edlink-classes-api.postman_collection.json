@@ -1,0 +1,358 @@
+{
+  "item": [
+    {
+      "id": "9de59fa3-a39b-4ae2-aa78-57b10b5a48b6",
+      "name": "Classes",
+      "description": {
+        "content": "Classes and their enrollments.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1aa90c4-89de-4529-b781-1832fbc9c63e",
+          "name": "List classes",
+          "request": {
+            "name": "List classes",
+            "description": {
+              "content": "Returns a paginated list of all classes shared with the integration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "graph",
+                "classes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$first",
+                  "value": "100",
+                  "description": "Number of records to return per page (pagination)."
+                },
+                {
+                  "disabled": false,
+                  "key": "$after",
+                  "value": "<string>",
+                  "description": "Cursor for fetching the page after this value."
+                },
+                {
+                  "disabled": false,
+                  "key": "$before",
+                  "value": "<string>",
+                  "description": "Cursor for fetching the page before this value."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "881356d0-8a6d-46f5-9bc2-d1f212cc6309",
+              "name": "A paginated list of classes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graph",
+                    "classes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$first",
+                      "value": "100"
+                    },
+                    {
+                      "key": "$after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$before",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$data\": [\n    {\n      \"id\": \"4eb00b5c-c22a-337f-fdcd-8bc1a6ab0acd\",\n      \"created_date\": \"1989-12-14T00:04:40.993Z\",\n      \"updated_date\": \"1988-01-20T21:20:39.105Z\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"picture_url\": \"string\",\n      \"state\": \"string\",\n      \"locale\": \"string\",\n      \"time_zone\": \"string\",\n      \"grade_levels\": [\n        \"string\",\n        \"string\"\n      ],\n      \"subjects\": [\n        \"string\",\n        \"string\"\n      ],\n      \"periods\": [\n        \"string\",\n        \"string\"\n      ],\n      \"session_ids\": [\n        \"fbba8ee8-502a-c951-44c4-8cde79b746a4\",\n        \"65771e22-24cd-23cb-579f-07e5d1b9ae39\"\n      ],\n      \"course_id\": \"231194c3-2bc2-7147-35e1-5ef0dad41b2a\",\n      \"school_id\": \"d201f60e-f8a7-bfd7-718c-e581cd0652cd\",\n      \"properties\": {}\n    },\n    {\n      \"id\": \"5cef6fc7-64c8-f716-2be6-8fd85fc362fc\",\n      \"created_date\": \"1950-07-18T00:00:28.172Z\",\n      \"updated_date\": \"1989-03-04T13:41:30.779Z\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"picture_url\": \"string\",\n      \"state\": \"string\",\n      \"locale\": \"string\",\n      \"time_zone\": \"string\",\n      \"grade_levels\": [\n        \"string\",\n        \"string\"\n      ],\n      \"subjects\": [\n        \"string\",\n        \"string\"\n      ],\n      \"periods\": [\n        \"string\",\n        \"string\"\n      ],\n      \"session_ids\": [\n        \"55c8733d-67b1-2415-dd0c-5baaa8c80cf9\",\n        \"7e4cfc2a-6281-dfc0-b07b-11f6b8d5bd51\"\n      ],\n      \"course_id\": \"de05551f-9eae-c736-98f4-ee840e19ffac\",\n      \"school_id\": \"e810332e-05f0-5352-880a-767d1ef95dc0\",\n      \"properties\": {}\n    }\n  ],\n  \"$next\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c599675-5c5e-41ed-963b-586ce9b06ca2",
+              "name": "Missing or invalid access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graph",
+                    "classes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$first",
+                      "value": "100"
+                    },
+                    {
+                      "key": "$after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$before",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"type\": \"string\",\n  \"code\": 7733\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2d720b4a-8699-4ecc-82e0-ed421093c12e",
+          "name": "Get a class",
+          "request": {
+            "name": "Get a class",
+            "description": {},
+            "url": {
+              "path": [
+                "graph",
+                "classes",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) Edlink UUID of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "356712b0-fd64-48b4-9753-8324eab9d8da",
+              "name": "A single class.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graph",
+                    "classes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Edlink UUID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$data\": {\n    \"id\": \"2813facc-60ec-4b8a-556c-abdb669fe4ed\",\n    \"created_date\": \"1978-08-19T16:28:48.408Z\",\n    \"updated_date\": \"2003-04-21T07:24:32.794Z\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"picture_url\": \"string\",\n    \"state\": \"string\",\n    \"locale\": \"string\",\n    \"time_zone\": \"string\",\n    \"grade_levels\": [\n      \"string\",\n      \"string\"\n    ],\n    \"subjects\": [\n      \"string\",\n      \"string\"\n    ],\n    \"periods\": [\n      \"string\",\n      \"string\"\n    ],\n    \"session_ids\": [\n      \"e405b03f-98b0-0d16-1057-1520408aeae1\",\n      \"0b84137e-1ad1-0915-3af4-b558f1abe58d\"\n    ],\n    \"course_id\": \"fefd8b3f-20db-c417-4bd6-780436e58dfc\",\n    \"school_id\": \"1b9fcc0c-e78c-8648-4d31-2ec49c1b20a0\",\n    \"properties\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac127284-0906-4a38-b3d1-c733d9994b85",
+              "name": "The resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graph",
+                    "classes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Edlink UUID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"type\": \"string\",\n  \"code\": 7733\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ed.link/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d21c440a-f63e-49ca-81d5-5f86bc001080",
+    "name": "Edlink Agents Classes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Edlink API provides a unified, normalized interface to school roster and learning data across hundreds of SIS and LMS source systems. The Graph API operates at the institution level using an Integration Access Token to read districts, schools, classes, sections, courses, people, and enrollments that have been shared with an integration. Single Sign-On is provided over OAuth 2.0 and OpenID Connect, and source/integration metadata plus change events support incremental synchronization. All requests are authenticated with a Bearer token.\n\nContact Support:\n Name: Edlink Support\n Email: support@ed.link",
+      "type": "text/plain"
+    }
+  }
+}

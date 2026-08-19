@@ -1,0 +1,288 @@
+{
+  "item": [
+    {
+      "id": "ee0a87d7-44e2-4302-b511-eaa3a11e57e7",
+      "name": "Sections",
+      "description": {
+        "content": "Sections that subdivide classes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2b8af6af-c22f-4b93-ba14-7e6a42e48e52",
+          "name": "List sections",
+          "request": {
+            "name": "List sections",
+            "description": {},
+            "url": {
+              "path": [
+                "graph",
+                "sections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$first",
+                  "value": "100",
+                  "description": "Number of records to return per page (pagination)."
+                },
+                {
+                  "disabled": false,
+                  "key": "$after",
+                  "value": "<string>",
+                  "description": "Cursor for fetching the page after this value."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e372aaf6-c170-49bd-a3ba-a4002f07e05f",
+              "name": "A paginated list of sections.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graph",
+                    "sections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$first",
+                      "value": "100"
+                    },
+                    {
+                      "key": "$after",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$data\": [\n    {\n      \"id\": \"51aaddb2-fa7c-6348-5207-43d41ea5faef\",\n      \"created_date\": \"1952-01-12T08:13:29.047Z\",\n      \"updated_date\": \"1949-08-15T19:42:25.732Z\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"picture_url\": \"string\",\n      \"state\": \"string\",\n      \"locale\": \"string\",\n      \"time_zone\": \"string\",\n      \"periods\": [\n        \"string\",\n        \"string\"\n      ],\n      \"class_id\": \"c83de068-029e-324a-7bd0-a06c107495a2\",\n      \"properties\": {}\n    },\n    {\n      \"id\": \"bd48372e-bf6b-70ab-cead-69fdd91888ee\",\n      \"created_date\": \"1967-01-25T07:34:33.316Z\",\n      \"updated_date\": \"1998-12-10T10:23:49.145Z\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"picture_url\": \"string\",\n      \"state\": \"string\",\n      \"locale\": \"string\",\n      \"time_zone\": \"string\",\n      \"periods\": [\n        \"string\",\n        \"string\"\n      ],\n      \"class_id\": \"eddd8ef8-9e0e-a89c-41f4-8cc93d15d3dd\",\n      \"properties\": {}\n    }\n  ],\n  \"$next\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1edcb964-1bb3-4c95-936e-ac94416b479a",
+          "name": "Get a section",
+          "request": {
+            "name": "Get a section",
+            "description": {},
+            "url": {
+              "path": [
+                "graph",
+                "sections",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) Edlink UUID of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "25a82b07-f097-4885-b6cf-8748aff944e9",
+              "name": "A single section.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graph",
+                    "sections",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Edlink UUID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$data\": {\n    \"id\": \"dd130e20-cf40-904c-1192-5721c44d2921\",\n    \"created_date\": \"1996-10-30T11:17:06.683Z\",\n    \"updated_date\": \"1971-07-19T01:43:17.393Z\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"picture_url\": \"string\",\n    \"state\": \"string\",\n    \"locale\": \"string\",\n    \"time_zone\": \"string\",\n    \"periods\": [\n      \"string\",\n      \"string\"\n    ],\n    \"class_id\": \"1b592ad0-262d-9749-c27b-1b15cacefc6e\",\n    \"properties\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99e20c70-6646-4be0-b9a9-9ce7edbe7842",
+              "name": "The resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graph",
+                    "sections",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Edlink UUID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"type\": \"string\",\n  \"code\": 3725\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ed.link/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "140d0eaf-dc69-4f6c-a060-b0ef665326af",
+    "name": "Edlink Agents Sections API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Edlink API provides a unified, normalized interface to school roster and learning data across hundreds of SIS and LMS source systems. The Graph API operates at the institution level using an Integration Access Token to read districts, schools, classes, sections, courses, people, and enrollments that have been shared with an integration. Single Sign-On is provided over OAuth 2.0 and OpenID Connect, and source/integration metadata plus change events support incremental synchronization. All requests are authenticated with a Bearer token.\n\nContact Support:\n Name: Edlink Support\n Email: support@ed.link",
+      "type": "text/plain"
+    }
+  }
+}

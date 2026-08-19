@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Edlink Agents Integrations API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Integrations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get integration metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/integrations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Edlink UUID of the resource."
+              }
+            ]
+          },
+          "docs": "Returns metadata about the integration tied to the current access token, including provider and status."
+        },
+        {
+          "info": {
+            "name": "List integrations (Meta API)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/meta/integrations"
+          },
+          "docs": "Service-account access to all integrations across the platform. Requires a Meta API access token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

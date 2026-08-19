@@ -1,0 +1,469 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Edlink Agents Graph API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Graph",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List people",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/people",
+            "params": [
+              {
+                "name": "$first",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return per page (pagination)."
+              },
+              {
+                "name": "$after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for fetching the page after this value."
+              },
+              {
+                "name": "$before",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for fetching the page before this value."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of all people (students, teachers, staff, guardians, administrators) shared with the integration."
+        },
+        {
+          "info": {
+            "name": "Get a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/people/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Edlink UUID of the resource."
+              }
+            ]
+          },
+          "docs": "Returns a single person by Edlink UUID."
+        },
+        {
+          "info": {
+            "name": "List classes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/classes",
+            "params": [
+              {
+                "name": "$first",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return per page (pagination)."
+              },
+              {
+                "name": "$after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for fetching the page after this value."
+              },
+              {
+                "name": "$before",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for fetching the page before this value."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of all classes shared with the integration."
+        },
+        {
+          "info": {
+            "name": "Get a class",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/classes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Edlink UUID of the resource."
+              }
+            ]
+          },
+          "docs": "Get a class"
+        },
+        {
+          "info": {
+            "name": "List enrollments for a class",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/classes/:id/enrollments",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Edlink UUID of the resource."
+              },
+              {
+                "name": "$first",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return per page (pagination)."
+              },
+              {
+                "name": "$after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for fetching the page after this value."
+              }
+            ]
+          },
+          "docs": "List enrollments for a class"
+        },
+        {
+          "info": {
+            "name": "List enrollments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/enrollments",
+            "params": [
+              {
+                "name": "$first",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return per page (pagination)."
+              },
+              {
+                "name": "$after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for fetching the page after this value."
+              },
+              {
+                "name": "$before",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for fetching the page before this value."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of enrollments describing the relationship between people and classes."
+        },
+        {
+          "info": {
+            "name": "Get an enrollment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/enrollments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Edlink UUID of the resource."
+              }
+            ]
+          },
+          "docs": "Get an enrollment"
+        },
+        {
+          "info": {
+            "name": "List schools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/schools",
+            "params": [
+              {
+                "name": "$first",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return per page (pagination)."
+              },
+              {
+                "name": "$after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for fetching the page after this value."
+              }
+            ]
+          },
+          "docs": "List schools"
+        },
+        {
+          "info": {
+            "name": "Get a school",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/schools/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Edlink UUID of the resource."
+              }
+            ]
+          },
+          "docs": "Get a school"
+        },
+        {
+          "info": {
+            "name": "List districts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/districts",
+            "params": [
+              {
+                "name": "$first",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return per page (pagination)."
+              },
+              {
+                "name": "$after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for fetching the page after this value."
+              }
+            ]
+          },
+          "docs": "List districts"
+        },
+        {
+          "info": {
+            "name": "Get a district",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/districts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Edlink UUID of the resource."
+              }
+            ]
+          },
+          "docs": "Get a district"
+        },
+        {
+          "info": {
+            "name": "List courses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/courses",
+            "params": [
+              {
+                "name": "$first",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return per page (pagination)."
+              },
+              {
+                "name": "$after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for fetching the page after this value."
+              }
+            ]
+          },
+          "docs": "List courses"
+        },
+        {
+          "info": {
+            "name": "Get a course",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/courses/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Edlink UUID of the resource."
+              }
+            ]
+          },
+          "docs": "Get a course"
+        },
+        {
+          "info": {
+            "name": "List sections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/sections",
+            "params": [
+              {
+                "name": "$first",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return per page (pagination)."
+              },
+              {
+                "name": "$after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for fetching the page after this value."
+              }
+            ]
+          },
+          "docs": "List sections"
+        },
+        {
+          "info": {
+            "name": "Get a section",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/sections/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Edlink UUID of the resource."
+              }
+            ]
+          },
+          "docs": "Get a section"
+        },
+        {
+          "info": {
+            "name": "List agents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/agents",
+            "params": [
+              {
+                "name": "$first",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return per page (pagination)."
+              },
+              {
+                "name": "$after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for fetching the page after this value."
+              }
+            ]
+          },
+          "docs": "Returns the source connection agents that feed data into the integration."
+        },
+        {
+          "info": {
+            "name": "Get an agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/agents/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Edlink UUID of the resource."
+              }
+            ]
+          },
+          "docs": "Get an agent"
+        },
+        {
+          "info": {
+            "name": "List change events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/events",
+            "params": [
+              {
+                "name": "$first",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return per page (pagination)."
+              },
+              {
+                "name": "$after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for fetching the page after this value."
+              }
+            ]
+          },
+          "docs": "Returns a stream of create, update, and delete events for roster objects to support incremental synchronization."
+        },
+        {
+          "info": {
+            "name": "Get integration metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ed.link/api/v2/graph/integrations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Edlink UUID of the resource."
+              }
+            ]
+          },
+          "docs": "Returns metadata about the integration tied to the current access token, including provider and status."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

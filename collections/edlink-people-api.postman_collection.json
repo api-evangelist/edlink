@@ -1,0 +1,414 @@
+{
+  "item": [
+    {
+      "id": "93a6fb0f-d8c2-4035-8bea-130008b69968",
+      "name": "People",
+      "description": {
+        "content": "Students, teachers, and other people.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d164a889-1c5c-41dc-8265-daebda49fc49",
+          "name": "List people",
+          "request": {
+            "name": "List people",
+            "description": {
+              "content": "Returns a paginated list of all people (students, teachers, staff, guardians, administrators) shared with the integration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "graph",
+                "people"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$first",
+                  "value": "100",
+                  "description": "Number of records to return per page (pagination)."
+                },
+                {
+                  "disabled": false,
+                  "key": "$after",
+                  "value": "<string>",
+                  "description": "Cursor for fetching the page after this value."
+                },
+                {
+                  "disabled": false,
+                  "key": "$before",
+                  "value": "<string>",
+                  "description": "Cursor for fetching the page before this value."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2a4203ee-2ddc-4250-aee9-805a224a96bd",
+              "name": "A paginated list of people.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graph",
+                    "people"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$first",
+                      "value": "100"
+                    },
+                    {
+                      "key": "$after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$before",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$data\": [\n    {\n      \"id\": \"63e2b648-799d-a1ab-8f4e-41d6070de04b\",\n      \"created_date\": \"1947-05-29T15:09:42.012Z\",\n      \"updated_date\": \"1980-07-21T16:28:30.791Z\",\n      \"first_name\": \"string\",\n      \"middle_name\": \"string\",\n      \"last_name\": \"string\",\n      \"display_name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"picture_url\": \"string\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ],\n      \"demographics\": {},\n      \"grade_levels\": [\n        \"string\",\n        \"string\"\n      ],\n      \"graduation_year\": \"string\",\n      \"district_id\": \"f0198ccb-7894-0858-1635-1d76a8d6f286\",\n      \"school_ids\": [\n        \"c247d806-4c22-1c18-98ee-e0e149d3cbaf\",\n        \"e63b9d05-0fc2-8eb0-cbb2-48669ea6990a\"\n      ],\n      \"properties\": {}\n    },\n    {\n      \"id\": \"346ac6f3-0247-9711-1c21-181d9166903a\",\n      \"created_date\": \"2013-12-25T17:29:24.352Z\",\n      \"updated_date\": \"1972-02-16T12:14:45.589Z\",\n      \"first_name\": \"string\",\n      \"middle_name\": \"string\",\n      \"last_name\": \"string\",\n      \"display_name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"picture_url\": \"string\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ],\n      \"demographics\": {},\n      \"grade_levels\": [\n        \"string\",\n        \"string\"\n      ],\n      \"graduation_year\": \"string\",\n      \"district_id\": \"3c56de9a-5af5-12f3-c733-fe2799518b86\",\n      \"school_ids\": [\n        \"1e70f140-8697-f0dc-4e8a-d98cd030eeb0\",\n        \"8b89317f-d3c8-a599-5db6-011ad6d47cdd\"\n      ],\n      \"properties\": {}\n    }\n  ],\n  \"$next\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4c0eedc-bb7f-4e7d-b2f5-99549105695d",
+              "name": "Missing or invalid access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graph",
+                    "people"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$first",
+                      "value": "100"
+                    },
+                    {
+                      "key": "$after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$before",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"type\": \"string\",\n  \"code\": 2250\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c25e8d77-6aff-4ae5-be05-9ea1a91402c8",
+          "name": "Get a person",
+          "request": {
+            "name": "Get a person",
+            "description": {
+              "content": "Returns a single person by Edlink UUID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "graph",
+                "people",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) Edlink UUID of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5365e161-43f2-422e-ab77-e72c1dd30685",
+              "name": "A single person.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graph",
+                    "people",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Edlink UUID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$data\": {\n    \"id\": \"7037f757-0847-6152-54d7-5b3cc2fe3e00\",\n    \"created_date\": \"1957-02-25T18:37:22.465Z\",\n    \"updated_date\": \"2009-07-16T19:02:29.964Z\",\n    \"first_name\": \"string\",\n    \"middle_name\": \"string\",\n    \"last_name\": \"string\",\n    \"display_name\": \"string\",\n    \"email\": \"string\",\n    \"phone\": \"string\",\n    \"picture_url\": \"string\",\n    \"roles\": [\n      \"string\",\n      \"string\"\n    ],\n    \"demographics\": {},\n    \"grade_levels\": [\n      \"string\",\n      \"string\"\n    ],\n    \"graduation_year\": \"string\",\n    \"district_id\": \"d85ac8bc-d148-b54e-f41a-733fdeeccc5f\",\n    \"school_ids\": [\n      \"91b7b068-72eb-89bd-a89e-124dc74699ff\",\n      \"250dbe0c-11f9-2bfb-9122-4c2aa81e994d\"\n    ],\n    \"properties\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bedb40d1-ff5f-4215-8ba6-b22af5f6a814",
+              "name": "Missing or invalid access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graph",
+                    "people",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Edlink UUID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"type\": \"string\",\n  \"code\": 2250\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b479a49-f347-44f5-bb37-fcfa445eb05a",
+              "name": "The resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graph",
+                    "people",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Edlink UUID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"type\": \"string\",\n  \"code\": 2250\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ed.link/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "204113fd-23f4-47a6-9384-a3420b0f163d",
+    "name": "Edlink Agents People API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Edlink API provides a unified, normalized interface to school roster and learning data across hundreds of SIS and LMS source systems. The Graph API operates at the institution level using an Integration Access Token to read districts, schools, classes, sections, courses, people, and enrollments that have been shared with an integration. Single Sign-On is provided over OAuth 2.0 and OpenID Connect, and source/integration metadata plus change events support incremental synchronization. All requests are authenticated with a Bearer token.\n\nContact Support:\n Name: Edlink Support\n Email: support@ed.link",
+      "type": "text/plain"
+    }
+  }
+}
