@@ -28,6 +28,14 @@ tags:
 - SIS
 - LMS
 - Integration
+- Unified-API
+tags_raw:
+- Education
+- EdTech
+- Rostering
+- SIS
+- LMS
+- Integration
 - Unified API
 created: '2026-06-21'
 modified: '2026-06-21'
@@ -119,6 +127,8 @@ apis:
   humanURL: https://ed.link/docs/api
   baseURL: https://ed.link/api/v2
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -151,6 +161,8 @@ apis:
   humanURL: https://ed.link/docs/api
   baseURL: https://ed.link/api/v2
   tags:
+  - Integration
+  tags_raw:
   - Integrations
   properties:
   - type: OpenAPI
