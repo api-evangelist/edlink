@@ -7,6 +7,18 @@ description: Edlink is an education-integration platform offering a unified API 
   normalized districts, schools, classes, sections, courses, people, and enrollments
   from hundreds of source systems behind a single Bearer-authenticated REST interface,
   plus SSO, source integrations, and change events.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
