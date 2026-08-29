@@ -104,6 +104,9 @@ apis:
   - type: Documentation
     url: https://ed.link/docs/guides/v2.0/sso/overview
 common:
+- type: CapabilityMap
+  url: capabilities/edlink-capability-edges.yml
+  name: Edlink Business Capability Map
 - type: AgenticAccess
   url: agentic-access/edlink-agentic-access.yml
 - type: DomainSecurity
