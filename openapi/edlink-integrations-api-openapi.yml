@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Edlink Agents Integrations API
-  description: The Edlink API provides a unified, normalized interface to school roster and learning data across hundreds of SIS and LMS source systems. The Graph API operates at the institution level using an Integration Access Token to read districts, schools, classes, sections, courses, people, and enrollments that have been shared with an integration. Single Sign-On is provided over OAuth 2.0 and OpenID Connect, and source/integration metadata plus change events support incremental synchronization. All requests are authenticated with a Bearer token.
+  title: Edlink Integrations API
+  description: The Edlink API provides a unified, normalized interface to school roster and learning data across hundreds of SIS and LMS source systems.
   termsOfService: https://ed.link/legal/terms
   contact:
     name: Edlink Support
@@ -17,22 +17,6 @@ tags:
 - name: Integrations
   description: Source and integration metadata.
 paths:
-  /graph/integrations/{id}:
-    get:
-      operationId: getIntegration
-      tags:
-      - Integrations
-      summary: Get integration metadata
-      description: Returns metadata about the integration tied to the current access token, including provider and status.
-      parameters:
-      - $ref: '#/components/parameters/Id'
-      responses:
-        '200':
-          description: Integration metadata.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/IntegrationResponse'
   /meta/integrations:
     get:
       operationId: listIntegrations
@@ -49,6 +33,17 @@ paths:
                 $ref: '#/components/schemas/IntegrationList'
 components:
   schemas:
+    IntegrationList:
+      type: object
+      properties:
+        $data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Integration'
+        $next:
+          type:
+          - string
+          - 'null'
     Integration:
       type: object
       properties:
@@ -67,35 +62,12 @@ components:
         status:
           type: string
         team_id:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
         properties:
           type: object
-    IntegrationList:
-      type: object
-      properties:
-        $data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Integration'
-        $next:
-          type: string
-          nullable: true
-    IntegrationResponse:
-      type: object
-      properties:
-        $data:
-          $ref: '#/components/schemas/Integration'
-  parameters:
-    Id:
-      name: id
-      in: path
-      required: true
-      description: Edlink UUID of the resource.
-      schema:
-        type: string
-        format: uuid
   securitySchemes:
     bearerAuth:
       type: http

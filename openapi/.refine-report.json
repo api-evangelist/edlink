@@ -1,36 +1,25 @@
 {
   "provider": "edlink",
   "sources": [
-    "edlink-agents-api-openapi.yml",
-    "edlink-classes-api-openapi.yml",
-    "edlink-courses-api-openapi.yml",
-    "edlink-districts-api-openapi.yml",
-    "edlink-enrollments-api-openapi.yml",
-    "edlink-events-api-openapi.yml",
-    "edlink-graph-api-openapi.yml",
-    "edlink-integrations-api-openapi.yml",
-    "edlink-people-api-openapi.yml",
-    "edlink-schools-api-openapi.yml",
-    "edlink-sections-api-openapi.yml",
-    "edlink-sso-api-openapi.yml"
+    "_original/edlink-openapi.yml"
   ],
   "outputs": [
-    "edlink-agents-api-openapi.yml",
-    "edlink-classes-api-openapi.yml",
-    "edlink-courses-api-openapi.yml",
-    "edlink-districts-api-openapi.yml",
-    "edlink-enrollments-api-openapi.yml",
-    "edlink-events-api-openapi.yml",
     "edlink-graph-api-openapi.yml",
     "edlink-integrations-api-openapi.yml",
-    "edlink-people-api-openapi.yml",
-    "edlink-schools-api-openapi.yml",
-    "edlink-sections-api-openapi.yml",
     "edlink-sso-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "edlink-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "edlink-openapi.yml: multi-axis tagging (12 tags, 3 first tags, 1.86x duplication over 22 operations) \u2014 split on first tag, 19 operations narrowed",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "edlink-graph-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "edlink-integrations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "edlink-sso-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

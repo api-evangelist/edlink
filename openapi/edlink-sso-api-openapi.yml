@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Edlink Agents SSO API
-  description: The Edlink API provides a unified, normalized interface to school roster and learning data across hundreds of SIS and LMS source systems. The Graph API operates at the institution level using an Integration Access Token to read districts, schools, classes, sections, courses, people, and enrollments that have been shared with an integration. Single Sign-On is provided over OAuth 2.0 and OpenID Connect, and source/integration metadata plus change events support incremental synchronization. All requests are authenticated with a Bearer token.
+  title: Edlink SSO API
+  description: The Edlink API provides a unified, normalized interface to school roster and learning data across hundreds of SIS and LMS source systems.
   termsOfService: https://ed.link/legal/terms
   contact:
     name: Edlink Support
@@ -55,11 +55,18 @@ paths:
           description: Invalid request.
 components:
   schemas:
-    PersonResponse:
+    TokenResponse:
       type: object
       properties:
-        $data:
-          $ref: '#/components/schemas/Person'
+        access_token:
+          type: string
+        token_type:
+          type: string
+          example: Bearer
+        expires_in:
+          type: integer
+        scope:
+          type: string
     Person:
       type: object
       properties:
@@ -73,45 +80,55 @@ components:
           type: string
           format: date-time
         first_name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         middle_name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         last_name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         display_name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         email:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         phone:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         picture_url:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         roles:
           type: array
           items:
             type: string
           description: One or more roles such as student, teacher, administrator, staff, guardian, district, observer.
         demographics:
-          type: object
-          nullable: true
+          type:
+          - object
+          - 'null'
         grade_levels:
           type: array
           items:
             type: string
         graduation_year:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         district_id:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
         school_ids:
           type: array
           items:
@@ -124,18 +141,6 @@ components:
         properties:
           type: object
           description: Non-standard custom properties from the source system.
-    TokenResponse:
-      type: object
-      properties:
-        access_token:
-          type: string
-        token_type:
-          type: string
-          example: Bearer
-        expires_in:
-          type: integer
-        scope:
-          type: string
     TokenRequest:
       type: object
       required:
@@ -155,6 +160,11 @@ components:
           type: string
         redirect_uri:
           type: string
+    PersonResponse:
+      type: object
+      properties:
+        $data:
+          $ref: '#/components/schemas/Person'
   securitySchemes:
     bearerAuth:
       type: http
