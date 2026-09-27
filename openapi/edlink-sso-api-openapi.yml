@@ -67,6 +67,25 @@ components:
           type: integer
         scope:
           type: string
+    TokenRequest:
+      type: object
+      required:
+      - grant_type
+      - code
+      - client_id
+      - client_secret
+      properties:
+        grant_type:
+          type: string
+          example: authorization_code
+        code:
+          type: string
+        client_id:
+          type: string
+        client_secret:
+          type: string
+        redirect_uri:
+          type: string
     Person:
       type: object
       properties:
@@ -141,25 +160,6 @@ components:
         properties:
           type: object
           description: Non-standard custom properties from the source system.
-    TokenRequest:
-      type: object
-      required:
-      - grant_type
-      - code
-      - client_id
-      - client_secret
-      properties:
-        grant_type:
-          type: string
-          example: authorization_code
-        code:
-          type: string
-        client_id:
-          type: string
-        client_secret:
-          type: string
-        redirect_uri:
-          type: string
     PersonResponse:
       type: object
       properties:

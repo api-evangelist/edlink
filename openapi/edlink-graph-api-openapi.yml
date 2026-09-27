@@ -349,13 +349,34 @@ paths:
                 $ref: '#/components/schemas/IntegrationResponse'
 components:
   schemas:
-    CourseList:
+    AgentResponse:
+      type: object
+      properties:
+        $data:
+          $ref: '#/components/schemas/Agent'
+    SchoolList:
       type: object
       properties:
         $data:
           type: array
           items:
-            $ref: '#/components/schemas/Course'
+            $ref: '#/components/schemas/School'
+        $next:
+          type:
+          - string
+          - 'null'
+    ClassResponse:
+      type: object
+      properties:
+        $data:
+          $ref: '#/components/schemas/Class'
+    SectionList:
+      type: object
+      properties:
+        $data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Section'
         $next:
           type:
           - string
@@ -365,6 +386,63 @@ components:
       properties:
         $data:
           $ref: '#/components/schemas/Person'
+    EnrollmentResponse:
+      type: object
+      properties:
+        $data:
+          $ref: '#/components/schemas/Enrollment'
+    IntegrationResponse:
+      type: object
+      properties:
+        $data:
+          $ref: '#/components/schemas/Integration'
+    Section:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_date:
+          type: string
+          format: date-time
+        updated_date:
+          type: string
+          format: date-time
+        name:
+          type: string
+        description:
+          type:
+          - string
+          - 'null'
+        picture_url:
+          type:
+          - string
+          - 'null'
+        state:
+          type: string
+        locale:
+          type:
+          - string
+          - 'null'
+        time_zone:
+          type:
+          - string
+          - 'null'
+        periods:
+          type: array
+          items:
+            type: string
+        class_id:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        identifiers:
+          type: array
+          items:
+            type: object
+        properties:
+          type: object
     Class:
       type: object
       properties:
@@ -431,172 +509,22 @@ components:
             type: object
         properties:
           type: object
-    DistrictResponse:
-      type: object
-      properties:
-        $data:
-          $ref: '#/components/schemas/District'
     CourseResponse:
       type: object
       properties:
         $data:
           $ref: '#/components/schemas/Course'
-    EnrollmentList:
+    PersonList:
       type: object
       properties:
         $data:
           type: array
           items:
-            $ref: '#/components/schemas/Enrollment'
+            $ref: '#/components/schemas/Person'
         $next:
           type:
           - string
           - 'null'
-    SchoolResponse:
-      type: object
-      properties:
-        $data:
-          $ref: '#/components/schemas/School'
-    SectionResponse:
-      type: object
-      properties:
-        $data:
-          $ref: '#/components/schemas/Section'
-    EventList:
-      type: object
-      properties:
-        $data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Event'
-        $next:
-          type:
-          - string
-          - 'null'
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        type:
-          type: string
-        code:
-          type: integer
-    Course:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        created_date:
-          type: string
-          format: date-time
-        updated_date:
-          type: string
-          format: date-time
-        name:
-          type: string
-        code:
-          type:
-          - string
-          - 'null'
-        grade_levels:
-          type: array
-          items:
-            type: string
-        subjects:
-          type: array
-          items:
-            type: string
-        session_id:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        school_id:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        district_id:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        identifiers:
-          type: array
-          items:
-            type: object
-        properties:
-          type: object
-    AgentResponse:
-      type: object
-      properties:
-        $data:
-          $ref: '#/components/schemas/Agent'
-    SchoolList:
-      type: object
-      properties:
-        $data:
-          type: array
-          items:
-            $ref: '#/components/schemas/School'
-        $next:
-          type:
-          - string
-          - 'null'
-    IntegrationResponse:
-      type: object
-      properties:
-        $data:
-          $ref: '#/components/schemas/Integration'
-    Section:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        created_date:
-          type: string
-          format: date-time
-        updated_date:
-          type: string
-          format: date-time
-        name:
-          type: string
-        description:
-          type:
-          - string
-          - 'null'
-        picture_url:
-          type:
-          - string
-          - 'null'
-        state:
-          type: string
-        locale:
-          type:
-          - string
-          - 'null'
-        time_zone:
-          type:
-          - string
-          - 'null'
-        periods:
-          type: array
-          items:
-            type: string
-        class_id:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        identifiers:
-          type: array
-          items:
-            type: object
-        properties:
-          type: object
     Person:
       type: object
       properties:
@@ -671,51 +599,18 @@ components:
         properties:
           type: object
           description: Non-standard custom properties from the source system.
-    DistrictList:
+    EnrollmentList:
       type: object
       properties:
         $data:
           type: array
           items:
-            $ref: '#/components/schemas/District'
+            $ref: '#/components/schemas/Enrollment'
         $next:
           type:
           - string
           - 'null'
-    PersonList:
-      type: object
-      properties:
-        $data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Person'
-        $next:
-          type:
-          - string
-          - 'null'
-    ClassList:
-      type: object
-      properties:
-        $data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Class'
-        $next:
-          type:
-          - string
-          - 'null'
-    SectionList:
-      type: object
-      properties:
-        $data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Section'
-        $next:
-          type:
-          - string
-          - 'null'
-    District:
+    Event:
       type: object
       properties:
         id:
@@ -724,69 +619,20 @@ components:
         created_date:
           type: string
           format: date-time
-        updated_date:
+        type:
           type: string
-          format: date-time
-        name:
+          description: The change type, such as created, updated, or deleted.
+        target_type:
           type: string
-        locale:
-          type:
-          - string
-          - 'null'
-        time_zone:
-          type:
-          - string
-          - 'null'
-        location:
-          type:
-          - object
-          - 'null'
-        identifiers:
-          type: array
-          items:
-            type: object
-        properties:
-          type: object
-    ClassResponse:
-      type: object
-      properties:
-        $data:
-          $ref: '#/components/schemas/Class'
-    Integration:
-      type: object
-      properties:
-        id:
+          description: The object type affected, such as person, class, or enrollment.
+        target_id:
           type: string
           format: uuid
-        created_date:
-          type: string
-          format: date-time
-        updated_date:
-          type: string
-          format: date-time
-        provider:
-          type: string
-          description: The source provider, such as Clever, ClassLink, Google Classroom, Canvas, Schoology, PowerSchool.
-        status:
-          type: string
-        team_id:
+        integration_id:
           type:
           - string
           - 'null'
           format: uuid
-        properties:
-          type: object
-    AgentList:
-      type: object
-      properties:
-        $data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Agent'
-        $next:
-          type:
-          - string
-          - 'null'
     School:
       type: object
       properties:
@@ -886,6 +732,177 @@ components:
             type: object
         properties:
           type: object
+    DistrictResponse:
+      type: object
+      properties:
+        $data:
+          $ref: '#/components/schemas/District'
+    SectionResponse:
+      type: object
+      properties:
+        $data:
+          $ref: '#/components/schemas/Section'
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        type:
+          type: string
+        code:
+          type: integer
+    AgentList:
+      type: object
+      properties:
+        $data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Agent'
+        $next:
+          type:
+          - string
+          - 'null'
+    EventList:
+      type: object
+      properties:
+        $data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+        $next:
+          type:
+          - string
+          - 'null'
+    SchoolResponse:
+      type: object
+      properties:
+        $data:
+          $ref: '#/components/schemas/School'
+    Integration:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_date:
+          type: string
+          format: date-time
+        updated_date:
+          type: string
+          format: date-time
+        provider:
+          type: string
+          description: The source provider, such as Clever, ClassLink, Google Classroom, Canvas, Schoology, PowerSchool.
+        status:
+          type: string
+        team_id:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        properties:
+          type: object
+    DistrictList:
+      type: object
+      properties:
+        $data:
+          type: array
+          items:
+            $ref: '#/components/schemas/District'
+        $next:
+          type:
+          - string
+          - 'null'
+    Course:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_date:
+          type: string
+          format: date-time
+        updated_date:
+          type: string
+          format: date-time
+        name:
+          type: string
+        code:
+          type:
+          - string
+          - 'null'
+        grade_levels:
+          type: array
+          items:
+            type: string
+        subjects:
+          type: array
+          items:
+            type: string
+        session_id:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        school_id:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        district_id:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        identifiers:
+          type: array
+          items:
+            type: object
+        properties:
+          type: object
+    CourseList:
+      type: object
+      properties:
+        $data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Course'
+        $next:
+          type:
+          - string
+          - 'null'
+    District:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_date:
+          type: string
+          format: date-time
+        updated_date:
+          type: string
+          format: date-time
+        name:
+          type: string
+        locale:
+          type:
+          - string
+          - 'null'
+        time_zone:
+          type:
+          - string
+          - 'null'
+        location:
+          type:
+          - object
+          - 'null'
+        identifiers:
+          type: array
+          items:
+            type: object
+        properties:
+          type: object
     Agent:
       type: object
       properties:
@@ -912,34 +929,17 @@ components:
           format: uuid
         properties:
           type: object
-    EnrollmentResponse:
+    ClassList:
       type: object
       properties:
         $data:
-          $ref: '#/components/schemas/Enrollment'
-    Event:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        created_date:
-          type: string
-          format: date-time
-        type:
-          type: string
-          description: The change type, such as created, updated, or deleted.
-        target_type:
-          type: string
-          description: The object type affected, such as person, class, or enrollment.
-        target_id:
-          type: string
-          format: uuid
-        integration_id:
+          type: array
+          items:
+            $ref: '#/components/schemas/Class'
+        $next:
           type:
           - string
           - 'null'
-          format: uuid
   responses:
     Unauthorized:
       description: Missing or invalid access token.
@@ -954,6 +954,14 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      description: Edlink UUID of the resource.
+      schema:
+        type: string
+        format: uuid
     Before:
       name: $before
       in: query
@@ -970,14 +978,6 @@ components:
         type: integer
         default: 100
         maximum: 10000
-    Id:
-      name: id
-      in: path
-      required: true
-      description: Edlink UUID of the resource.
-      schema:
-        type: string
-        format: uuid
     After:
       name: $after
       in: query

@@ -41,7 +41,7 @@ tags:
 - SIS
 - LMS
 - Integration
-- Unified-API
+- Unified API
 tags_raw:
 - Education
 - EdTech
@@ -50,6 +50,7 @@ tags_raw:
 - LMS
 - Integration
 - Unified API
+- Unified-API
 created: '2026-06-21'
 modified: '2026-06-21'
 specificationVersion: '0.23'
