@@ -55,18 +55,11 @@ paths:
           description: Invalid request.
 components:
   schemas:
-    TokenResponse:
+    PersonResponse:
       type: object
       properties:
-        access_token:
-          type: string
-        token_type:
-          type: string
-          example: Bearer
-        expires_in:
-          type: integer
-        scope:
-          type: string
+        $data:
+          $ref: '#/components/schemas/Person'
     TokenRequest:
       type: object
       required:
@@ -85,6 +78,18 @@ components:
         client_secret:
           type: string
         redirect_uri:
+          type: string
+    TokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+          example: Bearer
+        expires_in:
+          type: integer
+        scope:
           type: string
     Person:
       type: object
@@ -160,11 +165,6 @@ components:
         properties:
           type: object
           description: Non-standard custom properties from the source system.
-    PersonResponse:
-      type: object
-      properties:
-        $data:
-          $ref: '#/components/schemas/Person'
   securitySchemes:
     bearerAuth:
       type: http
