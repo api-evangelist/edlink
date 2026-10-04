@@ -55,11 +55,18 @@ paths:
           description: Invalid request.
 components:
   schemas:
-    PersonResponse:
+    TokenResponse:
       type: object
       properties:
-        $data:
-          $ref: '#/components/schemas/Person'
+        access_token:
+          type: string
+        token_type:
+          type: string
+          example: Bearer
+        expires_in:
+          type: integer
+        scope:
+          type: string
     TokenRequest:
       type: object
       required:
@@ -79,18 +86,11 @@ components:
           type: string
         redirect_uri:
           type: string
-    TokenResponse:
+    PersonResponse:
       type: object
       properties:
-        access_token:
-          type: string
-        token_type:
-          type: string
-          example: Bearer
-        expires_in:
-          type: integer
-        scope:
-          type: string
+        $data:
+          $ref: '#/components/schemas/Person'
     Person:
       type: object
       properties:
