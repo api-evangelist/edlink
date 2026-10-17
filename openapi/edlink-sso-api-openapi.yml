@@ -67,6 +67,11 @@ components:
           type: integer
         scope:
           type: string
+    PersonResponse:
+      type: object
+      properties:
+        $data:
+          $ref: '#/components/schemas/Person'
     TokenRequest:
       type: object
       required:
@@ -86,11 +91,6 @@ components:
           type: string
         redirect_uri:
           type: string
-    PersonResponse:
-      type: object
-      properties:
-        $data:
-          $ref: '#/components/schemas/Person'
     Person:
       type: object
       properties:

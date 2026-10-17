@@ -33,17 +33,6 @@ paths:
                 $ref: '#/components/schemas/IntegrationList'
 components:
   schemas:
-    IntegrationList:
-      type: object
-      properties:
-        $data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Integration'
-        $next:
-          type:
-          - string
-          - 'null'
     Integration:
       type: object
       properties:
@@ -68,6 +57,17 @@ components:
           format: uuid
         properties:
           type: object
+    IntegrationList:
+      type: object
+      properties:
+        $data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Integration'
+        $next:
+          type:
+          - string
+          - 'null'
   securitySchemes:
     bearerAuth:
       type: http
