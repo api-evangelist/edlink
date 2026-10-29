@@ -1,4 +1,4 @@
-# Edlink (edlink)
+# Edlink
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,159 +66,129 @@
 
 Edlink is an education-integration platform offering a unified API for rostering and school data across SIS and LMS systems. The Edlink Graph API exposes normalized districts, schools, classes, sections, courses, people, and enrollments from hundreds of source systems behind a single Bearer-authenticated REST interface, plus SSO, source integrations, and change events.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/edlink/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/edlink/refs/heads/main/apis.yml)
+**Areas:** Education · EdTech · Rostering · SIS · LMS · Integration · Unified API
 
-## Tags
+## Edlink on APIs.io
 
-- Education
-- EdTech
-- Rostering
-- SIS
-- LMS
-- Integration
-- Unified API
+Everything profiled for Edlink is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/edlink/](https://apis.io/providers/edlink/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (3)
 
-- **Created:** 2026-06-21
-- **Modified:** 2026-06-21
+- [Edlink Graph API](https://apis.io/apis/edlink/edlink-graph-api/) — Institution-level roster and school data.
+- [Edlink Integrations API](https://apis.io/apis/edlink/edlink-integrations-api/) — Source and integration metadata.
+- [Edlink SSO API](https://apis.io/apis/edlink/edlink-sso-api/) — OAuth 2.0 and OpenID Connect single sign-on.
 
-## APIs
+### Published properties
 
-### Graph API - Users, Classes, Enrollments
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Institution-level access to normalized people, classes, and enrollments via the Graph API using an Integration Access Token, ideal for bulk roster sync across SIS and LMS sources.
+#### Agentic access (1)
 
-- **Human URL:** [https://ed.link/docs/api](https://ed.link/docs/api)
-- **Base URL:** `https://ed.link/api/v2`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Edlink Agentic Access](https://apis.io/agentic-access/edlink/edlink-agentic-access/)
 
-- Rostering
-- People
-- Classes
-- Enrollments
+#### Collections (13)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://ed.link/docs/api)
-- [API Reference](https://ed.link/docs/guides/v2.0/getting-started/graph-user-meta-apis)
-- [OpenAPI](openapi/edlink-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/edlink.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/edlink.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Edlink API](https://apis.io/collections/edlink/open-edlink/)
+- [Edlink Agents API](https://apis.io/collections/edlink/open-edlink-agents-api/)
+- [Edlink Agents Classes API](https://apis.io/collections/edlink/open-edlink-classes-api/)
+- [Edlink Agents Courses API](https://apis.io/collections/edlink/open-edlink-courses-api/)
+- [Edlink Agents Districts API](https://apis.io/collections/edlink/open-edlink-districts-api/)
+- [Edlink Agents Enrollments API](https://apis.io/collections/edlink/open-edlink-enrollments-api/)
+- [Edlink Agents Events API](https://apis.io/collections/edlink/open-edlink-events-api/)
+- [Edlink Agents Graph API](https://apis.io/collections/edlink/open-edlink-graph-api/)
+- [Edlink Agents Integrations API](https://apis.io/collections/edlink/open-edlink-integrations-api/)
+- [Edlink Agents People API](https://apis.io/collections/edlink/open-edlink-people-api/)
+- [Edlink Agents Schools API](https://apis.io/collections/edlink/open-edlink-schools-api/)
+- [Edlink Agents Sections API](https://apis.io/collections/edlink/open-edlink-sections-api/)
+- [Edlink Agents SSO API](https://apis.io/collections/edlink/open-edlink-sso-api/)
 
-### Graph API - Schools, Districts
+#### Security (2)
 
-Organizational hierarchy of districts and schools shared with an integration, including locale, time zone, grade levels, and location metadata.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://ed.link/docs/api](https://ed.link/docs/api)
-- **Base URL:** `https://ed.link/api/v2`
+- [Edlink Authentication](https://apis.io/security/edlink/edlink-authentication/)
+- [Edlink Domain Security](https://apis.io/security/edlink/edlink-domain-security/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Schools
-- Districts
-- Organizations
+Published plans, tiers and prices.
 
-#### Properties
+- [Edlink Plans Pricing](https://apis.io/plans/edlink/edlink-plans-pricing/)
 
-- [Documentation](https://ed.link/docs/api)
-- [OpenAPI](openapi/edlink-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/edlink.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/edlink.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### Graph API - Courses, Sections
+Published request limits.
 
-Course catalog and the sections that subdivide classes, with codes, subjects, grade levels, sessions, and class relationships.
+- [Edlink Rate Limits](https://apis.io/rate-limits/edlink/edlink-rate-limits/)
 
-- **Human URL:** [https://ed.link/docs/api](https://ed.link/docs/api)
-- **Base URL:** `https://ed.link/api/v2`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Courses
-- Sections
-- Catalog
+- [Edlink Finops](https://apis.io/finops/edlink/edlink-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://ed.link/docs/api)
-- [OpenAPI](openapi/edlink-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/edlink.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/edlink.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### SSO
-
-Single Sign-On via OAuth 2.0 and OpenID Connect, letting teachers and students authenticate into a learning platform through their source identity provider and returning a User Access Token.
-
-- **Human URL:** [https://ed.link/docs/guides/v2.0/sso/overview](https://ed.link/docs/guides/v2.0/sso/overview)
-- **Base URL:** `https://ed.link/api/v2`
-
-#### Tags
-
-- SSO
-- OAuth2
-- OIDC
-- Authentication
-
-#### Properties
-
-- [Documentation](https://ed.link/docs/guides/v2.0/sso/overview)
-- [OpenAPI](openapi/edlink-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/edlink.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/edlink.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Sources, Integrations
-
-Integration and source metadata describing each connected district data source (SIS/LMS), its provider, status, and sharing configuration, accessible via the Graph and Meta APIs.
-
-- **Human URL:** [https://ed.link/docs/api](https://ed.link/docs/api)
-- **Base URL:** `https://ed.link/api/v2`
-
-#### Tags
-
-- Sources
-- Integrations
-- Connections
-
-#### Properties
-
-- [Documentation](https://ed.link/docs/api)
-- [OpenAPI](openapi/edlink-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/edlink.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/edlink.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Events, Webhooks
-
-Change events stream describing creates, updates, and deletes to roster objects so integrations can incrementally sync rather than re-fetching the full graph.
-
-- **Human URL:** [https://ed.link/docs/api](https://ed.link/docs/api)
-- **Base URL:** `https://ed.link/api/v2`
-
-#### Tags
-
-- Events
-- Webhooks
-- Change Data
-
-#### Properties
-
-- [Documentation](https://ed.link/docs/api)
-- [OpenAPI](openapi/edlink-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/edlink.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/edlink.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/edlink)
-- [LinkedIn](https://www.linkedin.com/company/edlink-inc)
 - [Website](https://ed.link/)
 - [Documentation](https://ed.link/docs)
-- [Plans](plans/edlink-plans-pricing.yml)
-- [Rate Limits](rate-limits/edlink-rate-limits.yml)
-- [Fin Ops](finops/edlink-finops.yml)
+- [Blog](https://ed.link/community/rss/)
+- [GitHub](https://github.com/edlink)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 26.3** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 48.8 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 31.0 |
+| Access clarity | 7.9 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Education & Research
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/edlink/](https://apis.io/providers/edlink/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Edlink: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/edlink/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
